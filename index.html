@@ -129,6 +129,39 @@ header{
 .view{display:none; margin-top:16px}
 .view.active{display:block}
 
+/* ---------- SHARE BAR (WhatsApp) ---------- */
+.share-bar{
+  width:100%;margin-top:12px;appearance:none;cursor:pointer;font-family:inherit;text-align:left;
+  display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;
+  background:linear-gradient(135deg,#1FA855,#25D366);border:0;color:#fff;
+  box-shadow:0 6px 18px rgba(37,211,102,.28);transition:.15s;
+}
+.share-bar:active{transform:translateY(1px)}
+.share-bar .wa-ic{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.share-bar .wa-ic svg{width:20px;height:20px}
+.share-bar .share-txt{flex:1;display:flex;flex-direction:column;line-height:1.25}
+.share-bar .share-txt b{font-size:14px}
+.share-bar .share-sub{font-size:11px;opacity:.9}
+.share-bar .share-arr{font-size:22px;opacity:.85;font-weight:400}
+
+/* ---------- MODAL ---------- */
+.modal-ov{position:fixed;inset:0;background:rgba(22,14,44,.55);backdrop-filter:blur(2px);z-index:200;display:none;align-items:flex-end;justify-content:center;padding:0}
+.modal-ov.open{display:flex}
+.modal{background:var(--card);width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:16px 16px 20px;box-shadow:0 -10px 40px rgba(0,0,0,.3);max-height:88vh;display:flex;flex-direction:column;animation:slideup .25s cubic-bezier(.2,.7,.2,1)}
+@media(min-width:560px){.modal{border-radius:18px;margin-bottom:auto;margin-top:auto}.modal-ov{align-items:center}}
+@keyframes slideup{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
+.modal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.modal-title{font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px;color:var(--ink)}
+.wa-dot{width:9px;height:9px;border-radius:50%;background:#25D366}
+.modal-x{appearance:none;border:0;background:var(--lav);color:var(--muted);width:30px;height:30px;border-radius:9px;cursor:pointer;font-size:14px;font-family:inherit}
+.modal-note{font-size:12px;color:var(--muted);margin-bottom:11px;line-height:1.45}
+.wa-preview{flex:1;overflow:auto;background:#F3F7F4;border:1px solid #DDE9E0;border-radius:12px;padding:13px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;line-height:1.55;color:#243027;white-space:pre-wrap;word-break:break-word;margin:0}
+.modal-actions{display:flex;gap:9px;margin-top:13px}
+.modal-actions .uact{flex:1;text-decoration:none}
+.uact.copy{background:var(--lav);color:var(--brand)}
+.uact.wa{background:#25D366;color:#fff}
+.uact svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
 /* ---------- SEGMENTED (Por processo / Por nome) ---------- */
 .segmented{display:flex;gap:6px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:5px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
 .seg-btn{flex:1;appearance:none;border:0;background:transparent;color:var(--muted);font-family:inherit;font-weight:700;font-size:13px;padding:9px;border-radius:8px;cursor:pointer;transition:.14s;display:flex;align-items:center;justify-content:center;gap:6px}
@@ -419,6 +452,13 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
     <div class="tab" data-tab="fisc" onclick="switchTab('fisc')">🧾 Impostos <span class="tc" id="tcFisc">0</span></div>
   </div>
 
+  <!-- Enviar resumo (abaixo da navegação) -->
+  <button class="share-bar" onclick="openShare()">
+    <span class="wa-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.46-.15-.65.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.5.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.49-.65-.5-.17-.01-.36-.01-.55-.01s-.5.07-.77.36c-.26.29-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.19 2.02 3.08 4.9 4.32.68.29 1.22.47 1.63.6.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34zM12.05 21.9h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.64-.24-.37a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 012.89 6.99c0 5.45-4.44 9.89-9.89 9.89zm8.41-18.3A11.8 11.8 0 0012.05 0C5.5 0 .16 5.33.16 11.88c0 2.09.55 4.14 1.59 5.94L.06 24l6.33-1.66a11.86 11.86 0 005.66 1.44h.01c6.55 0 11.89-5.33 11.89-11.88 0-3.17-1.24-6.16-3.49-8.4z"/></svg></span>
+    <span class="share-txt"><b>Enviar resumo ao presidente</b><span class="share-sub">Resumo executivo formatado p/ WhatsApp</span></span>
+    <span class="share-arr">›</span>
+  </button>
+
   <!-- ===== BANCÁRIO ===== -->
   <div class="view active" id="view-banc">
     <div class="segmented">
@@ -509,6 +549,22 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
     Grupo Ragga Foods · Painel gerado para acompanhamento interno do passivo judicial.<br>
     Documento de trabalho — não substitui a orientação jurídica formal.
   </footer>
+</div>
+
+<!-- MODAL: resumo WhatsApp -->
+<div class="modal-ov" id="shareModal" onclick="if(event.target===this)closeShare()">
+  <div class="modal">
+    <div class="modal-h">
+      <div class="modal-title"><span class="wa-dot"></span>Resumo para o presidente</div>
+      <button class="modal-x" onclick="closeShare()">✕</button>
+    </div>
+    <div class="modal-note">Gerado a partir da base atual. Copie e cole no WhatsApp do Raphael, ou abra direto no app.</div>
+    <pre class="wa-preview" id="waPreview"></pre>
+    <div class="modal-actions">
+      <button class="uact copy" onclick="copyWA()"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>Copiar resumo</button>
+      <a class="uact wa" id="waLink" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.46-.15-.65.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.5.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.49-.65-.5h-.55c-.19 0-.5.07-.77.36-.26.29-1 .98-1 2.4s1.03 2.78 1.17 2.97c.15.19 2.02 3.08 4.9 4.32.68.29 1.22.47 1.63.6.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z"/></svg>Abrir no WhatsApp</a>
+    </div>
+  </div>
 </div>
 
 <input type="file" id="fileInput" accept="application/json,.json" style="display:none">
@@ -1741,6 +1797,74 @@ document.getElementById('fileInput').addEventListener('change',e=>{
   };
   r.readAsText(f,'utf-8');
 });
+
+/* ====== RESUMO WHATSAPP ====== */
+function buildWhatsApp(){
+  const exec=DB.bancario.filter(p=>p.tipo==='Execução');
+  const agr=DB.bancario.filter(p=>p.tipo==='Agravo');
+  const tB=exec.reduce((s,p)=>s+(p.valor||0),0);
+  const tF=DB.impostos.reduce((s,p)=>s+(p.valor||0),0);
+  const totalProc=DB.bancario.length+DB.impostos.length;
+  const bankAgg={};
+  DB.bancario.forEach(p=>{ if(!bankAgg[p.banco])bankAgg[p.banco]={val:0,exec:0,agr:0};
+    if(p.tipo==='Agravo')bankAgg[p.banco].agr++; else {bankAgg[p.banco].exec++; bankAgg[p.banco].val+=(p.valor||0);} });
+  const banks=Object.entries(bankAgg).sort((a,b)=>b[1].val-a[1].val);
+  const bk={citado:0,nao:0,segredo:0,Agravo:0};
+  DB.bancario.forEach(p=>bk[procBucket(p)]++);
+  const top=aggregateParties().filter(p=>p.cit>0).sort((a,b)=>b.cit-a.cit||b.total-a.total).slice(0,5);
+  const negado=agr.filter(a=>a.resultado==='negado').length;
+  const pend=agr.length-negado;
+  const fiscCit=DB.impostos.filter(f=>/cita/i.test(f.fase)).length;
+  const fiscConstr=DB.impostos.filter(f=>/constrit/i.test(f.fase)).length;
+  const fiscSusp=DB.impostos.filter(f=>/suspens/i.test(f.fase)).length;
+  const M=v=>fmtShort(v);
+
+  let t='';
+  t+='⚖️ *ACOMPANHAMENTO JUDICIAL — PASSIVO*\n';
+  t+='_Grupo Ragga · atualizado em '+(DB.meta?.atualizadoEm||'—')+'_\n\n';
+  t+='📊 *Visão geral*\n';
+  t+='• *'+totalProc+' processos* ('+DB.bancario.length+' bancários · '+DB.impostos.length+' fiscais)\n';
+  t+='• Passivo total: *'+M(tB+tF)+'*\n';
+  t+='   ┣ Bancário: '+M(tB)+' ('+exec.length+' exec + '+agr.length+' agravos)\n';
+  t+='   ┗ Fiscal: '+M(tF)+' ('+DB.impostos.length+' exec)\n\n';
+  t+='🏦 *Bancário por banco*\n';
+  banks.forEach(([b,d])=>{ t+='• '+b+': *'+M(d.val)+'* — '+d.exec+' exec'+(d.agr?' + '+d.agr+' agravo'+(d.agr>1?'s':''):'')+'\n'; });
+  t+='\n🔎 *Situação das execuções*\n';
+  t+='• 🟠 Com parte citada: *'+bk.citado+'* — _penhora possível_\n';
+  t+='• 🟢 Sem citação ainda: '+bk.nao+'\n';
+  t+='• 🔒 Em segredo de justiça: '+bk.segredo+'\n';
+  t+='• ⚖️ Agravos (recurso Safra): '+bk.Agravo+'\n\n';
+  t+='👥 *Mais expostos (citações)*\n';
+  top.forEach(p=>{ t+='• '+shortName(p)+' — '+p.cit+' citaç'+(p.cit>1?'ões':'ão')+'\n'; });
+  t+='\n⚖️ *Agravos do Safra*\n';
+  t+='Recursos do banco tentando arresto imediato + sigilo:\n';
+  if(negado) t+='• '+negado+' com arresto *negado* pelo juiz ✅\n';
+  if(pend) t+='• '+pend+' pendente'+(pend>1?'s':'')+' de decisão ⏳\n';
+  t+='\n🧾 *Fiscal (destaques)*\n';
+  t+='• '+fiscCit+' em citação · '+fiscConstr+' em atos constritivos · '+fiscSusp+' suspensos\n';
+  t+='\n📱 _Painel interativo completo em anexo._';
+  return t;
+}
+let _waText='';
+function openShare(){
+  _waText=buildWhatsApp();
+  document.getElementById('waPreview').textContent=_waText;
+  document.getElementById('waLink').href='https://wa.me/?text='+encodeURIComponent(_waText);
+  document.getElementById('shareModal').classList.add('open');
+}
+function closeShare(){document.getElementById('shareModal').classList.remove('open');}
+function copyWA(){
+  const done=()=>toast('Resumo copiado ✓');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(_waText).then(done).catch(()=>fallbackCopy(_waText,done));
+  }else fallbackCopy(_waText,done);
+}
+function fallbackCopy(txt,cb){
+  const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');cb();}catch(e){toast('Não foi possível copiar automaticamente');}
+  document.body.removeChild(ta);
+}
 
 /* ====== boot ====== */
 function renderAll(){
