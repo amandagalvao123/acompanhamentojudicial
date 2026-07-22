@@ -574,8 +574,8 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "14/07/2026",
-  "fonte": "Planilha SEMANAL v3 + Resumo de Citações"
+  "atualizadoEm": "17/07/2026",
+  "fonte": "Planilha SEMANAL (17/07) + Resumo de Citações"
  },
  "bancario": [
   {
@@ -812,7 +812,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "11/05/2026",
    "ccb": "CCB nº 005388936 — R$ 2.200.000,00. Inadimplentes desde 09/03/2026.",
-   "andamento": "02/07/2026 — Autora pediu penhora de bens de TODOS os executados (mesmo os não citados) e nova tentativa de citação de Gecionil e Raphael.",
+   "andamento": "16/07/2026 — Decorrido o prazo da Serbase para pagamento voluntário. Em 13/07 o juízo determinou nova citação de Gecionil e Raphael e a apresentação de cálculo atualizado do débito.",
    "partes": [
     {
      "nome": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA",
@@ -948,7 +948,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "29/06/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — maior valor do passivo bancário.",
-   "andamento": "02/07/2026 — Expedidas cartas de citação para Luiz Otávio e Raphael Palma. 08/07/2026 — Sem confirmação de citação de Pazoria e Big Fome no domicílio judicial eletrônico.",
+   "andamento": "15/07/2026 — Expedidas cartas de citação para Pazoria Service Foods e Big Fome.",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
@@ -1057,6 +1057,82 @@ let DB = {
      "doc": "730.859.109-30",
      "tipo": "PF",
      "status": "segredo",
+     "data": null
+    }
+   ]
+  },
+  {
+   "numero": "0045291-52.2026.8.16.0014",
+   "banco": "Santander",
+   "valor": 191788.61,
+   "tipo": "Execução",
+   "segredo": false,
+   "ref": null,
+   "ajuizamento": "09/07/2026",
+   "ccb": "CCB nº 00330162300000053750 — Renegociação de Dívida de R$ 146.794,88, em 47 parcelas mensais. Inadimplentes desde 30/10/2025.",
+   "andamento": "15/07/2026 — Determinada a citação dos devedores para pagamento voluntário do débito.",
+   "partes": [
+    {
+     "nome": "17 MAJ TREINAMENTOS E SERV LTDA",
+     "doc": "58.501.777/0001-10",
+     "tipo": "PJ",
+     "status": "nao",
+     "data": null
+    },
+    {
+     "nome": "AMGEZA FOOD COMÉRCIO DE ALIMENTOS LTDA",
+     "doc": "42.874.031/0001-11",
+     "tipo": "PJ",
+     "status": "nao",
+     "data": null
+    },
+    {
+     "nome": "BIG FOME LANCHES LTDA",
+     "doc": "14.882.853/0001-09",
+     "tipo": "PJ",
+     "status": "nao",
+     "data": null
+    },
+    {
+     "nome": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA",
+     "doc": "42.649.933/0001-54",
+     "tipo": "PJ",
+     "status": "nao",
+     "data": null
+    },
+    {
+     "nome": "DONA FOOD COMÉRCIO DE ALIMENTOS LTDA",
+     "doc": "44.224.264/0001-02",
+     "tipo": "PJ",
+     "status": "nao",
+     "data": null
+    },
+    {
+     "nome": "PANINES FOOD COMÉRCIO DE ALIMENTOS LTDA",
+     "doc": "52.294.908/0001-59",
+     "tipo": "PJ",
+     "status": "nao",
+     "data": null
+    },
+    {
+     "nome": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA",
+     "doc": "03.992.652/0001-48",
+     "tipo": "PJ",
+     "status": "nao",
+     "data": null
+    },
+    {
+     "nome": "OMAR APARECIDO ALVES",
+     "doc": "730.859.109-30",
+     "tipo": "PF",
+     "status": "nao",
+     "data": null
+    },
+    {
+     "nome": "RAPHAEL PALMA SOUZA E SILVA",
+     "doc": "031.008.759-74",
+     "tipo": "PF",
+     "status": "nao",
      "data": null
     }
    ]
@@ -1829,13 +1905,14 @@ function buildWhatsApp(){
   t+='   ┗ Fiscal: '+M(tF)+' ('+DB.impostos.length+' exec)\n\n';
   t+='🏦 *Bancário por banco*\n';
   banks.forEach(([b,d])=>{ t+='• '+b+': *'+M(d.val)+'* — '+d.exec+' exec'+(d.agr?' + '+d.agr+' agravo'+(d.agr>1?'s':''):'')+'\n'; });
-  t+='\n🔎 *Situação das execuções*\n';
-  t+='• 🟠 Com parte citada: *'+bk.citado+'* — _penhora possível_\n';
+  t+='\n🔎 *Situação das execuções* (contagem por processo)\n';
+  t+='• 🟠 Com parte já citada: *'+bk.citado+'* — _penhora possível_\n';
   t+='• 🟢 Sem citação ainda: '+bk.nao+'\n';
   t+='• 🔒 Em segredo de justiça: '+bk.segredo+'\n';
   t+='• ⚖️ Agravos (recurso Safra): '+bk.Agravo+'\n\n';
-  t+='👥 *Mais expostos (citações)*\n';
-  top.forEach(p=>{ t+='• '+shortName(p)+' — '+p.cit+' citaç'+(p.cit>1?'ões':'ão')+'\n'; });
+  t+='👥 *Partes mais citadas* (em quantos processos cada uma está citada)\n';
+  top.forEach(p=>{ t+='• '+shortName(p)+' — em '+p.cit+' processo'+(p.cit>1?'s':'')+'\n'; });
+  t+='_Obs.: um mesmo processo cita várias partes ao mesmo tempo, então a soma por nome é maior que o nº de processos._\n';
   t+='\n⚖️ *Agravos do Safra*\n';
   t+='Recursos do banco tentando arresto imediato + sigilo:\n';
   if(negado) t+='• '+negado+' com arresto *negado* pelo juiz ✅\n';
