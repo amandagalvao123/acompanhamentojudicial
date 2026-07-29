@@ -346,9 +346,36 @@ header{
 .bar-row .bc{font-size:11px;color:var(--muted-2);width:30px;text-align:right;flex:0 0 auto}
 
 /* ---------- FISCAL ---------- */
-.fisc{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;box-shadow:var(--shadow-sm);overflow:hidden}
+.fisc{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;box-shadow:var(--shadow-sm);overflow:hidden;position:relative}
 .fisc-h{padding:12px 14px;cursor:pointer;display:flex;gap:11px;align-items:flex-start}
 .fisc-h .fl{flex:1;min-width:0}
+
+/* semáforo */
+:root{--sig-red:#DC2626;--sig-amber:#E08600;--sig-green:#059669;--sig-grey:#94A3B8}
+.fisc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+.fisc.sig-red::before{background:var(--sig-red)} .fisc.sig-amber::before{background:var(--sig-amber)}
+.fisc.sig-green::before{background:var(--sig-green)} .fisc.sig-grey::before{background:var(--sig-grey)}
+.sinal{width:26px;height:26px;border-radius:50%;flex:0 0 auto;position:relative;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.sinal::after{content:"";width:12px;height:12px;border-radius:50%}
+.sinal.s-red{background:#FCE4E4} .sinal.s-red::after{background:var(--sig-red);box-shadow:0 0 6px rgba(220,38,38,.6)}
+.sinal.s-amber{background:#FCEFD6} .sinal.s-amber::after{background:var(--sig-amber);box-shadow:0 0 6px rgba(224,134,0,.55)}
+.sinal.s-green{background:#DEF3EA} .sinal.s-green::after{background:var(--sig-green);box-shadow:0 0 6px rgba(5,150,105,.5)}
+.sinal.s-grey{background:#ECEEF1} .sinal.s-grey::after{background:var(--sig-grey)}
+
+/* resumo semáforo (barras) */
+.sinal-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.sinal-row .sl{display:flex;align-items:center;gap:8px;width:190px;flex:0 0 auto;font-size:12.5px;font-weight:600;color:var(--ink)}
+.sinal-row .dot{width:13px;height:13px;border-radius:50%;flex:0 0 auto}
+.dot.d-red{background:var(--sig-red)} .dot.d-amber{background:var(--sig-amber)} .dot.d-green{background:var(--sig-green)} .dot.d-grey{background:var(--sig-grey)}
+.sinal-row .track{flex:1;background:var(--lav);border-radius:7px;height:20px;overflow:hidden}
+.sinal-row .fillbar{height:100%;border-radius:7px;display:flex;align-items:center;justify-content:flex-end;padding-right:7px;color:#fff;font-size:10.5px;font-weight:800;min-width:26px}
+.f-red{background:var(--sig-red)} .f-amber{background:var(--sig-amber)} .f-green{background:var(--sig-green)} .f-grey{background:var(--sig-grey)}
+.sinal-legend{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr;gap:7px}
+@media(min-width:560px){.sinal-legend{grid-template-columns:1fr 1fr}}
+.sinal-legend .lg{display:flex;gap:9px;align-items:flex-start;font-size:11.5px;color:var(--muted);line-height:1.4}
+.sinal-legend .lg .dot{margin-top:3px}
+.sinal-legend .lg b{color:var(--ink)}
+
 .fase-tag{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:6px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
 .fase-cit{background:var(--cit-bg);color:var(--cit-tx)}
 .fase-cons{background:var(--neg-bg);color:var(--neg-tx)}
@@ -559,16 +586,20 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
   <!-- ===== IMPOSTOS ===== -->
   <div class="view" id="view-fisc">
     <div class="chart-card">
-      <h3>Execuções fiscais por fase</h3>
-      <div class="csub">Quantidade de processos em cada etapa</div>
-      <div id="faseChart"></div>
+      <h3>🚦 Semáforo fiscal</h3>
+      <div class="csub">Cada execução recebe uma luz conforme a fase e o risco de constrição</div>
+      <div id="sinalSummary"></div>
+      <div class="sinal-legend" id="sinalLegend"></div>
     </div>
     <div class="filters">
       <div class="search">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
         <input id="searchFisc" placeholder="Buscar por empresa, tributo, nº dos autos…" oninput="renderFisc()">
       </div>
-      <div class="chips" id="faseChips"></div>
+      <div class="filter-grp">
+        <div class="flabel">Filtrar por luz do semáforo</div>
+        <div class="chips" id="faseChips"></div>
+      </div>
     </div>
     <div id="fiscList"></div>
   </div>
@@ -1599,18 +1630,35 @@ function renderBankChart(){
     </div>`).join('');
 }
 
-/* ====== CHART: fase fiscal ====== */
+/* ====== SEMÁFORO FISCAL ====== */
+// Define a luz do semáforo por fase/risco
+function fiscSinal(fase){
+  const f=(fase||'').toLowerCase();
+  if(/constrit|penhor|arrest|bloqueio/.test(f)) return {k:'red',cls:'s-red',dot:'d-red',fill:'f-red',emoji:'🔴',label:'Constrição ativa'};
+  if(/cita/.test(f))                            return {k:'amber',cls:'s-amber',dot:'d-amber',fill:'f-amber',emoji:'🟡',label:'Em citação'};
+  if(/suspens|parcel/.test(f))                  return {k:'green',cls:'s-green',dot:'d-green',fill:'f-green',emoji:'🟢',label:'Suspenso / parcelado'};
+  if(/arquiv/.test(f))                          return {k:'grey',cls:'s-grey',dot:'d-grey',fill:'f-grey',emoji:'⚪',label:'Arquivado'};
+  return {k:'grey',cls:'s-grey',dot:'d-grey',fill:'f-grey',emoji:'⚪',label:'Outros'};
+}
+const SINAIS=[
+  {k:'red',dot:'d-red',fill:'f-red',label:'Constrição ativa',desc:'Penhora/bloqueio de bens em andamento — <b>risco imediato</b>.'},
+  {k:'amber',dot:'d-amber',fill:'f-amber',label:'Em citação',desc:'Processo ativo, executado sendo notificado — <b>atenção</b>.'},
+  {k:'green',dot:'d-green',fill:'f-green',label:'Suspenso / parcelado',desc:'Negociado ou suspenso (art. 40 LEF) — <b>sob controle</b>.'},
+  {k:'grey',dot:'d-grey',fill:'f-grey',label:'Arquivado',desc:'Encerrado definitivamente — <b>sem ação</b>.'},
+];
 function renderFaseChart(){
-  const agg={};
-  DB.impostos.forEach(p=>{const f=p.fase||'—';agg[f]=(agg[f]||0)+1;});
-  const entries=Object.entries(agg).sort((a,b)=>b[1]-a[1]);
-  const max=Math.max(...entries.map(e=>e[1]),1);
-  const col=f=>/constrit|constrit/i.test(f)?'#B45309':/citaç/i.test(f)?'#DB7A0C':/suspens/i.test(f)?'#64748B':/arquiv/i.test(f)?'#918AA6':'#6B4FA0';
-  document.getElementById('faseChart').innerHTML = entries.map(([f,c])=>`
-    <div class="bar-row">
-      <div class="bl" style="width:118px">${esc(f)}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${Math.max(c/max*100,10)}%;background:${col(f)}">${c}</div></div>
-    </div>`).join('');
+  const agg={red:0,amber:0,green:0,grey:0};
+  DB.impostos.forEach(p=>agg[fiscSinal(p.fase).k]++);
+  const max=Math.max(...Object.values(agg),1);
+  document.getElementById('sinalSummary').innerHTML = SINAIS.map(s=>{
+    const c=agg[s.k];
+    return `<div class="sinal-row">
+      <div class="sl"><span class="dot ${s.dot}"></span>${s.label}</div>
+      <div class="track"><div class="fillbar ${s.fill}" style="width:${Math.max(c/max*100, c?12:0)}%">${c||''}</div></div>
+    </div>`;
+  }).join('');
+  document.getElementById('sinalLegend').innerHTML = SINAIS.map(s=>
+    `<div class="lg"><span class="dot ${s.dot}"></span><div><b>${s.label}</b> — ${s.desc}</div></div>`).join('');
 }
 
 /* ====== BANK / STATUS CHIPS ====== */
@@ -1647,10 +1695,10 @@ function setBank(b){bankFilter=b;renderChips();renderBanc();}
 function setStatus(s){statusFilter=s;renderChips();renderBanc();}
 
 function renderFaseChips(){
-  const fases=['all',...new Set(DB.impostos.map(p=>p.fase))];
-  document.getElementById('faseChips').innerHTML = fases.map(f=>{
-    const l=f==='all'?'Todas as fases':f;
-    return `<button class="chip ${faseFilter===f?'active':''}" onclick="setFase('${esc(f)}')">${esc(l)}</button>`;
+  const opts=[['all','Todas',''],['red','🔴 Constrição','d-red'],['amber','🟡 Citação','d-amber'],['green','🟢 Suspenso','d-green'],['grey','⚪ Arquivado','d-grey']];
+  document.getElementById('faseChips').innerHTML = opts.map(([k,l,dc])=>{
+    const c=DB.impostos.filter(p=> k==='all'?true:fiscSinal(p.fase).k===k).length;
+    return `<button class="chip ${faseFilter===k?'active':''}" onclick="setFase('${k}')">${l}<span class="cnt">${c}</span></button>`;
   }).join('');
 }
 function setFase(f){faseFilter=f;renderFaseChips();renderFisc();}
@@ -1765,7 +1813,7 @@ function faseClass(f){
 function renderFisc(){
   const q=(document.getElementById('searchFisc').value||'').toLowerCase().trim();
   let list=DB.impostos.filter(p=>{
-    if(faseFilter!=='all'&&p.fase!==faseFilter)return false;
+    if(faseFilter!=='all'&&fiscSinal(p.fase).k!==faseFilter)return false;
     if(q){
       const hay=(p.empresa+' '+p.doc+' '+p.tributo+' '+p.autos+' '+p.sistema+' '+(p.adv||'')).toLowerCase();
       if(!hay.includes(q))return false;
@@ -1777,9 +1825,11 @@ function renderFisc(){
   el.innerHTML=list.map(p=>fiscCard(p,DB.impostos.indexOf(p))).join('');
 }
 function fiscCard(p,idx){
+  const s=fiscSinal(p.fase);
   return `
-  <div class="fisc" id="fisc-${idx}">
+  <div class="fisc sig-${s.k}" id="fisc-${idx}">
     <div class="fisc-h" onclick="toggleCard('fisc-${idx}')">
+      <span class="sinal ${s.cls}" title="${esc(s.label)}"></span>
       <div class="fl">
         <div class="row1">
           <span class="tributo-tag">${esc(p.tributo)}</span>
@@ -2007,50 +2057,44 @@ function buildWhatsApp(){
   const tB=exec.reduce((s,p)=>s+(p.valor||0),0);
   const tF=DB.impostos.reduce((s,p)=>s+(p.valor||0),0);
   const totalProc=DB.bancario.length+DB.impostos.length;
-  const bankAgg={};
-  DB.bancario.forEach(p=>{ if(!bankAgg[p.banco])bankAgg[p.banco]={val:0,exec:0,agr:0};
-    if(p.tipo==='Agravo')bankAgg[p.banco].agr++; else {bankAgg[p.banco].exec++; bankAgg[p.banco].val+=(p.valor||0);} });
-  const banks=Object.entries(bankAgg).sort((a,b)=>b[1].val-a[1].val);
-  const bk={citado:0,nao:0,segredo:0,Agravo:0};
-  DB.bancario.forEach(p=>bk[procBucket(p)]++);
-  const top=aggregateParties().filter(p=>p.cit>0).sort((a,b)=>b.cit-a.cit||b.total-a.total).slice(0,5);
-  const negado=agr.filter(a=>a.resultado==='negado').length;
-  const pend=agr.length-negado;
-  const fiscCit=DB.impostos.filter(f=>/cita/i.test(f.fase)).length;
-  const fiscConstr=DB.impostos.filter(f=>/constrit/i.test(f.fase)).length;
-  const fiscSusp=DB.impostos.filter(f=>/suspens/i.test(f.fase)).length;
   const M=v=>fmtShort(v);
+
+  // partes já citadas (risco de penhora), separadas PJ/PF
+  const citadas=aggregateParties().filter(p=>p.cit>0);
+  const nome=pt=>{ const w=pt.nome.replace(/\s+/g,' ').trim().split(' ');
+    const conn=new Set(['e','de','da','do','das','dos']);
+    const cap=s=>{ const l=s.toLowerCase(); if(conn.has(l)) return l; return s.length<=2? s.toUpperCase() : s.charAt(0).toUpperCase()+l.slice(1); };
+    if(pt.tipo==='PJ') return w.slice(0,2).map(cap).join(' ');
+    return w.map(cap).join(' '); };
+  const novo=pt=> pt.occ.some(o=>o.novo)? ' 🆕':'';
+  const pj=citadas.filter(p=>p.tipo==='PJ').sort((a,b)=>b.cit-a.cit||a.nome.localeCompare(b.nome));
+  const pf=citadas.filter(p=>p.tipo==='PF').sort((a,b)=>b.cit-a.cit||a.nome.localeCompare(b.nome));
+  const line=pt=>'• '+nome(pt)+' — em '+pt.cit+' processo'+(pt.cit>1?'s':'')+novo(pt)+'\n';
+
+  // atualizações de bens (imóvel/veículo/constrição) da semana
+  const ativos=(DB.mudancas||[]).filter(m=>m.tipo==='ativo');
 
   let t='';
   t+='⚖️ *ACOMPANHAMENTO JUDICIAL — PASSIVO*\n';
   t+='_Grupo Ragga · atualizado em '+(DB.meta?.atualizadoEm||'—')+'_\n\n';
-  if(DB.mudancas&&DB.mudancas.length){
-    const ni={citacao:'✅',ativo:'🏠',novo_processo:'🆕',nova_fiscal:'🧾',andamento:'📝'};
-    t+='🔔 *Novidades desde '+(DB.meta?.semanaAnterior||'a última semana')+'*\n';
-    DB.mudancas.forEach(m=>{ const ic=m.tipo==='ativo'?(m.subtipo==='constricao'?'⚖️':'🏠'):(ni[m.tipo]||'•'); t+='• '+ic+' '+m.texto+(m.banco?' _('+m.banco+')_':'')+'\n'; });
-    t+='\n';
+
+  t+='📊 Temos *'+totalProc+' processos* no total ('+DB.bancario.length+' bancários · '+DB.impostos.length+' fiscais).\n';
+  t+='Passivo total: *'+M(tB+tF)+'*.\n\n';
+
+  t+='🟠 *JÁ CITADOS — risco de penhora*\n';
+  t+='_Partes notificadas que já podem sofrer bloqueio/penhora ('+citadas.length+' no total):_\n\n';
+  if(pj.length){ t+='🏢 *Empresas ('+pj.length+')*\n'; pj.forEach(p=>t+=line(p)); t+='\n'; }
+  if(pf.length){ t+='👤 *Pessoas ('+pf.length+')*\n'; pf.forEach(p=>t+=line(p)); t+='\n'; }
+  t+='_O 🆕 marca quem foi citado nesta semana._\n\n';
+
+  t+='🏠 *Atualizações de bens*\n';
+  if(ativos.length){
+    ativos.forEach(m=>{ const ic=m.subtipo==='constricao'?'⚖️':'🏠';
+      t+='• '+ic+' '+(m.detalhe||m.texto)+(m.banco?' _('+m.banco+')_':'')+'\n'; });
+  } else {
+    t+='• _Sem novidades de imóvel/veículo nesta semana._\n';
   }
-  t+='📊 *Visão geral*\n';
-  t+='• *'+totalProc+' processos* ('+DB.bancario.length+' bancários · '+DB.impostos.length+' fiscais)\n';
-  t+='• Passivo total: *'+M(tB+tF)+'*\n';
-  t+='   ┣ Bancário: '+M(tB)+' ('+exec.length+' exec + '+agr.length+' agravos)\n';
-  t+='   ┗ Fiscal: '+M(tF)+' ('+DB.impostos.length+' exec)\n\n';
-  t+='🏦 *Bancário por banco*\n';
-  banks.forEach(([b,d])=>{ t+='• '+b+': *'+M(d.val)+'* — '+d.exec+' exec'+(d.agr?' + '+d.agr+' agravo'+(d.agr>1?'s':''):'')+'\n'; });
-  t+='\n🔎 *Situação das execuções* (contagem por processo)\n';
-  t+='• 🟠 Com parte já citada: *'+bk.citado+'* — _penhora possível_\n';
-  t+='• 🟢 Sem citação ainda: '+bk.nao+'\n';
-  t+='• 🔒 Em segredo de justiça: '+bk.segredo+'\n';
-  t+='• ⚖️ Agravos (recurso Safra): '+bk.Agravo+'\n\n';
-  t+='👥 *Partes mais citadas* (em quantos processos cada uma está citada)\n';
-  top.forEach(p=>{ t+='• '+shortName(p)+' — em '+p.cit+' processo'+(p.cit>1?'s':'')+'\n'; });
-  t+='_Obs.: um mesmo processo cita várias partes ao mesmo tempo, então a soma por nome é maior que o nº de processos._\n';
-  t+='\n⚖️ *Agravos do Safra*\n';
-  t+='Recursos do banco tentando arresto imediato + sigilo:\n';
-  if(negado) t+='• '+negado+' com arresto *negado* pelo juiz ✅\n';
-  if(pend) t+='• '+pend+' pendente'+(pend>1?'s':'')+' de decisão ⏳\n';
-  t+='\n🧾 *Fiscal (destaques)*\n';
-  t+='• '+fiscCit+' em citação · '+fiscConstr+' em atos constritivos · '+fiscSusp+' suspensos\n';
+
   t+='\n📱 _Painel interativo completo em anexo._';
   return t;
 }
