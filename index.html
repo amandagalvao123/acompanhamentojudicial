@@ -648,9 +648,9 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "21/08/2026",
-  "fonte": "Planilha SEMANAL (21/08)",
-  "semanaAnterior": "14/08/2026"
+  "atualizadoEm": "28/08/2026",
+  "fonte": "Planilha SEMANAL (28/08)",
+  "semanaAnterior": "21/08/2026"
  },
  "bancario": [
   {
@@ -662,7 +662,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "18/03/2026",
    "ccb": "CCB nº 18110 — Capital de Giro PEAC de R$ 1.200.000,00, em 36 parcelas (última 20/03/2027). Executados pagaram até a 13ª parcela. Possui Cessão Fiduciária (título de capitalização de R$ 200.000,00).",
-   "andamento": "06/08/2026 — Expedida busca SISBAJUD para bloqueio de valores dos executados já citados, no limite atualizado de R$ 1.281.809,56.",
+   "andamento": "24/08/2026 — BLOQUEADOS valores nas contas dos executados (total R$ 28.928,64): Alexandre R$ 13.435,34 · Amgeza R$ 5.461,56 · Corn Food R$ 4.602,38 · Big Fome R$ 3.110,97 · Serbase R$ 1.843,06 · Dona Food R$ 475,33.",
    "partes": [
     {
      "nome": "AMGEZA FOOD COMÉRCIO DE ALIMENTOS EIRELI",
@@ -720,7 +720,10 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "0020113-04.2026.8.16.0014",
@@ -781,10 +784,7 @@ let DB = {
      "status": "citado",
      "data": "01/06/2026"
     }
-   ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   ]
   },
   {
    "numero": "0034070-72.2026.8.16.0014",
@@ -1022,11 +1022,11 @@ let DB = {
    "banco": "Itaú",
    "valor": 6522550.08,
    "tipo": "Execução",
-   "segredo": true,
+   "segredo": false,
    "ref": null,
    "ajuizamento": "29/06/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — maior valor do passivo bancário.",
-   "andamento": "27/07/2026 — Retornadas citações POSITIVAS de Raphael Palma e Luiz Otávio. 31/07/2026 — Retornadas citações negativas de Big Fome e Pazoria.",
+   "andamento": "28/08/2026 — Juiz NÃO reconheceu a validade das citações de Luiz Otávio e Raphael Palma (assinadas por terceiros numa loja do Biggs) e determinou novas expedições. Banco também pediu novas citações da Big Fome e Pazoria.",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
@@ -1046,17 +1046,20 @@ let DB = {
      "nome": "LUIZ OTAVIO VESPA SANTOS",
      "doc": "118.878.469-21",
      "tipo": "PF",
-     "status": "citado",
-     "data": "27/07/2026"
+     "status": "nao",
+     "data": null
     },
     {
      "nome": "RAPHAEL PALMA SOUZA E SILVA",
      "doc": "031.008.759-74",
      "tipo": "PF",
-     "status": "citado",
-     "data": "27/07/2026"
+     "status": "nao",
+     "data": null
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "4080151-65.2026.8.26.0100",
@@ -1213,10 +1216,7 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   ]
   },
   {
    "numero": "0049142-02.2026.8.16.0014",
@@ -1227,7 +1227,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "28/07/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "Pendente de decisão inicial.",
+   "andamento": "24/08/2026 — Determinada a citação dos executados para pagamento da dívida em 3 dias úteis.",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
@@ -1271,7 +1271,10 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "0051098-53.2026.8.16.0014",
@@ -1282,7 +1285,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "06/08/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "16/08/2026 — Determinada a citação dos executados para pagamento da dívida em 3 dias úteis.",
+   "andamento": "21/08/2026 — Expedidas citações para pagamento da dívida em 3 dias úteis.",
    "partes": [
     {
      "nome": "17 MAJ TREINAMENTOS E SERV LTDA",
@@ -1361,7 +1364,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "10/08/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "18/08/2026 — Determinada a citação dos executados para pagamento da dívida em 3 dias úteis.",
+   "andamento": "25/08/2026 — Expedidas citações para Gecionil, Omar e Raphael para pagamento voluntário em 3 dias úteis.",
    "partes": [
     {
      "nome": "17 MAJ TREINAMENTOS E SERV LTDA",
@@ -1472,10 +1475,7 @@ let DB = {
      "status": "na",
      "data": null
     }
-   ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   ]
   },
   {
    "numero": "4063213-04.2026.8.26.0000",
@@ -1815,38 +1815,43 @@ let DB = {
   {
    "tipo": "ativo",
    "subtipo": "constricao",
-   "processo": "0024667-79.2026.8.16.0014",
-   "banco": "Bradesco",
-   "texto": "Pedido/deferimento de arresto ou penhora",
-   "detalhe": "20/08/2026 — Banco Bradesco requereu o BLOQUEIO de ativos financeiros da Adriane Vespa até o limite do débito e o reconhecimento da citação da Corn Food como válida (os sócios não assinaram o recebimento da carta)."
+   "processo": "0019048-71.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "Constrição / bloqueio de valores",
+   "detalhe": "24/08/2026 — BLOQUEADOS valores nas contas dos executados (total R$ 28.928,64): Alexandre R$ 13.435,34 · Amgeza R$ 5.461,56 · Corn Food R$ 4.602,38 · Big Fome R$ 3.110,97 · Serbase R$ 1.843,06 · Dona Food R$ 475,33."
+  },
+  {
+   "tipo": "reversao",
+   "processo": "4018526-30.2026.8.26.0003",
+   "banco": "Itaú",
+   "texto": "LUIZ OTAVIO VESPA SANTOS — citação INVALIDADA (voltou a não citada)"
+  },
+  {
+   "tipo": "reversao",
+   "processo": "4018526-30.2026.8.26.0003",
+   "banco": "Itaú",
+   "texto": "RAPHAEL PALMA SOUZA E SILVA — citação INVALIDADA (voltou a não citada)"
   },
   {
    "tipo": "andamento",
-   "processo": "0045291-52.2026.8.16.0014",
+   "processo": "0049142-02.2026.8.16.0014",
    "banco": "Santander",
    "texto": "Andamento atualizado",
-   "detalhe": "21/08/2026 — Expedidas novas tentativas de citação para todas as partes."
+   "detalhe": "24/08/2026 — Determinada a citação dos executados para pagamento da dívida em 3 dias úteis."
   },
   {
    "tipo": "andamento",
    "processo": "0051098-53.2026.8.16.0014",
    "banco": "Santander",
    "texto": "Andamento atualizado",
-   "detalhe": "16/08/2026 — Determinada a citação dos executados para pagamento da dívida em 3 dias úteis."
+   "detalhe": "21/08/2026 — Expedidas citações para pagamento da dívida em 3 dias úteis."
   },
   {
    "tipo": "andamento",
    "processo": "0051853-77.2026.8.16.0014",
    "banco": "Santander",
    "texto": "Andamento atualizado",
-   "detalhe": "18/08/2026 — Determinada a citação dos executados para pagamento da dívida em 3 dias úteis."
-  },
-  {
-   "tipo": "andamento",
-   "processo": "4063244-24.2026.8.26.0000",
-   "banco": "Safra",
-   "texto": "Agravo do banco NEGADO",
-   "detalhe": "20/08/2026 — Conhecido o recurso e NÃO provido."
+   "detalhe": "25/08/2026 — Expedidas citações para Gecionil, Omar e Raphael para pagamento voluntário em 3 dias úteis."
   }
  ]
 };
