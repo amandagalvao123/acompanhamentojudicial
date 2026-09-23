@@ -648,9 +648,9 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "16/09/2026",
-  "fonte": "Planilha SEMANAL (16/09) + Resumo de Citações",
-  "semanaAnterior": "09/09/2026"
+  "atualizadoEm": "23/09/2026",
+  "fonte": "Planilha SEMANAL (23/09) + Resumo de Citações",
+  "semanaAnterior": "16/09/2026"
  },
  "bancario": [
   {
@@ -808,11 +808,7 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ],
-   "chg": {
-    "valorAtualizado": true,
-    "andamentoAtualizado": true
-   }
+   ]
   },
   {
    "numero": "4080317-97.2026.8.26.0100",
@@ -880,10 +876,7 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   ]
   },
   {
    "numero": "4080333-51.2026.8.26.0100",
@@ -1030,21 +1023,23 @@ let DB = {
    "ref": null,
    "ajuizamento": "29/06/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — maior valor do passivo bancário.",
-   "andamento": "11/09/2026 — Expedida carta precatória para citação de Luiz Otávio e Raphael Palma.",
+   "andamento": "14/09/2026 — Citação POSITIVA da Big Fome. 18/09/2026 — Citação POSITIVA da Pazoria. Luiz Otávio e Raphael seguem sem citação (carta precatória expedida).",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
      "doc": "14.882.853/0001-09",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "14/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "PAZORIA SERVICE FOODS COM. DE ALIMENTOS LTDA",
      "doc": "52.935.974/0001-60",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "18/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "LUIZ OTAVIO VESPA SANTOS",
@@ -1128,7 +1123,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "11/05/2026",
    "ccb": "CCB nº 8492378.",
-   "andamento": "Processo em segredo de justiça.",
+   "andamento": "14/09/2026 — Citação POSITIVA de Omar Aparecido (processo em segredo de justiça).",
    "partes": [
     {
      "nome": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA",
@@ -1141,10 +1136,14 @@ let DB = {
      "nome": "OMAR APARECIDO ALVES",
      "doc": "730.859.109-30",
      "tipo": "PF",
-     "status": "segredo",
-     "data": null
+     "status": "citado",
+     "data": "14/09/2026",
+     "novoCitado": true
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "0045291-52.2026.8.16.0014",
@@ -1155,7 +1154,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "09/07/2026",
    "ccb": "CCB nº 00330162300000053750 — Renegociação de Dívida de R$ 146.794,88, em 47 parcelas mensais. Inadimplentes desde 30/10/2025.",
-   "andamento": "21/08/2026 — Expedidas novas tentativas de citação para todas as partes.",
+   "andamento": "14/09/2026 — Todas as citações retornaram negativas. Nenhuma parte citada.",
    "partes": [
     {
      "nome": "17 MAJ TREINAMENTOS E SERV LTDA",
@@ -1220,7 +1219,10 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "0049142-02.2026.8.16.0014",
@@ -1231,46 +1233,43 @@ let DB = {
    "ref": null,
    "ajuizamento": "28/07/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "08/09/2026 — Retornadas POSITIVAS as citações de Serbase, Big Fome, 17 MAJ e Alexandre José. Citação de Raphael Palma retornou negativa.",
+   "andamento": "14/09/2026 — Citação POSITIVA da Corn Food (soma-se a Serbase, Big Fome, 17 MAJ e Alexandre já citados em 08/09). Raphael segue sem citação.",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
      "doc": "14.882.853/0001-09",
      "tipo": "PJ",
      "status": "citado",
-     "data": "08/09/2026",
-     "novoCitado": true
+     "data": "08/09/2026"
     },
     {
      "nome": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA",
      "doc": "03.992.652/0001-48",
      "tipo": "PJ",
      "status": "citado",
-     "data": "08/09/2026",
-     "novoCitado": true
+     "data": "08/09/2026"
     },
     {
      "nome": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA",
      "doc": "42.649.933/0001-54",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "14/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "17 MAJ TREINAMENTOS E SERV LTDA",
      "doc": "58.501.777/0001-10",
      "tipo": "PJ",
      "status": "citado",
-     "data": "08/09/2026",
-     "novoCitado": true
+     "data": "08/09/2026"
     },
     {
      "nome": "ALEXANDRE JOSE MARTINS",
      "doc": "021.184.999-57",
      "tipo": "PF",
      "status": "citado",
-     "data": "08/09/2026",
-     "novoCitado": true
+     "data": "08/09/2026"
     },
     {
      "nome": "RAPHAEL PALMA SOUZA E SILVA",
@@ -1293,14 +1292,15 @@ let DB = {
    "ref": null,
    "ajuizamento": "06/08/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "21/08/2026 — Expedidas citações para pagamento da dívida em 3 dias úteis.",
+   "andamento": "03/09/2026 — Citação positiva da Corn. 10/09/2026 — Citações positivas de Dona Food, Big Fome, Panines, Serbase e 17 MAJ. 14/09/2026 — Citações negativas de Adriane, Raphael e Amgeza.",
    "partes": [
     {
      "nome": "17 MAJ TREINAMENTOS E SERV LTDA",
      "doc": "58.501.777/0001-10",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "10/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "AMGEZA FOOD COMÉRCIO DE ALIMENTOS LTDA",
@@ -1313,36 +1313,41 @@ let DB = {
      "nome": "BIG FOME LANCHES LTDA",
      "doc": "14.882.853/0001-09",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "10/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA",
      "doc": "42.649.933/0001-54",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "03/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "DONA FOOD COMÉRCIO DE ALIMENTOS LTDA",
      "doc": "44.224.264/0001-02",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "10/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "PANINES FOOD COMÉRCIO DE ALIMENTOS LTDA",
      "doc": "52.294.908/0001-59",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "10/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA",
      "doc": "03.992.652/0001-48",
      "tipo": "PJ",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "10/09/2026",
+     "novoCitado": true
     },
     {
      "nome": "ADRIANE VESPA ALVES",
@@ -1358,7 +1363,10 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "0051853-77.2026.8.16.0014",
@@ -1560,7 +1568,7 @@ let DB = {
    "ref": "4018526-30.2026.8.26.0003",
    "ajuizamento": "28/07/2026",
    "ccb": null,
-   "andamento": "04/09/2026 — Conhecido o recurso e NÃO provido.",
+   "andamento": "15/09/2026 — Banco opôs embargos de declaração para tentar reverter o indeferimento do arresto cautelar (agravo já havia sido negado).",
    "pedido": "Requerido deferimento da tutela antecipada para arresto de bens.",
    "resultado": "negado",
    "partes": [
@@ -1592,7 +1600,10 @@ let DB = {
      "status": "na",
      "data": null
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "4072400-36.2026.8.26.0000",
@@ -1621,10 +1632,7 @@ let DB = {
      "status": "na",
      "data": null
     }
-   ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   ]
   }
  ],
  "impostos": [
@@ -1819,61 +1827,77 @@ let DB = {
  "mudancas": [
   {
    "tipo": "citacao",
-   "processo": "0049142-02.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "BIG FOME LANCHES LTDA citada em 08/09/2026"
-  },
-  {
-   "tipo": "citacao",
-   "processo": "0049142-02.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA citada em 08/09/2026"
-  },
-  {
-   "tipo": "citacao",
-   "processo": "0049142-02.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "17 MAJ TREINAMENTOS E SERV LTDA citada em 08/09/2026"
-  },
-  {
-   "tipo": "citacao",
-   "processo": "0049142-02.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "ALEXANDRE JOSE MARTINS citada em 08/09/2026"
-  },
-  {
-   "tipo": "valor",
-   "processo": "0034070-72.2026.8.16.0014",
-   "banco": "Bradesco",
-   "texto": "Débito atualizado: R$ 619.033,64 → R$ 717.356,01 (+R$ 98.322,37)"
-  },
-  {
-   "tipo": "andamento",
-   "processo": "0034070-72.2026.8.16.0014",
-   "banco": "Bradesco",
-   "texto": "Andamento atualizado",
-   "detalhe": "03/09/2026 — Valor do débito atualizado para R$ 717.356,01. Nenhuma parte citada até o momento."
-  },
-  {
-   "tipo": "andamento",
-   "processo": "4080355-12.2026.8.26.0100",
-   "banco": "Safra",
-   "texto": "Andamento atualizado",
-   "detalhe": "07/09/2026 — Carta de citação de Gecionil Gomes retornou negativa."
-  },
-  {
-   "tipo": "andamento",
    "processo": "4018526-30.2026.8.26.0003",
    "banco": "Itaú",
-   "texto": "Andamento atualizado",
-   "detalhe": "11/09/2026 — Expedida carta precatória para citação de Luiz Otávio e Raphael Palma."
+   "texto": "BIG FOME LANCHES LTDA citada em 14/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "4018526-30.2026.8.26.0003",
+   "banco": "Itaú",
+   "texto": "PAZORIA SERVICE FOODS COM. DE ALIMENTOS LTDA citada em 18/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "4080117-90.2026.8.26.0100",
+   "banco": "Safra",
+   "texto": "OMAR APARECIDO ALVES citada em 14/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "0049142-02.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA citada em 14/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "0051098-53.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "17 MAJ TREINAMENTOS E SERV LTDA citada em 10/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "0051098-53.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "BIG FOME LANCHES LTDA citada em 10/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "0051098-53.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA citada em 03/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "0051098-53.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "DONA FOOD COMÉRCIO DE ALIMENTOS LTDA citada em 10/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "0051098-53.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "PANINES FOOD COMÉRCIO DE ALIMENTOS LTDA citada em 10/09/2026"
+  },
+  {
+   "tipo": "citacao",
+   "processo": "0051098-53.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA citada em 10/09/2026"
   },
   {
    "tipo": "andamento",
-   "processo": "4072400-36.2026.8.26.0000",
-   "banco": "Safra",
+   "processo": "0045291-52.2026.8.16.0014",
+   "banco": "Santander",
    "texto": "Andamento atualizado",
-   "detalhe": "08/09/2026 — Recurso transitado em julgado; baixa definitiva (arresto negado)."
+   "detalhe": "14/09/2026 — Todas as citações retornaram negativas. Nenhuma parte citada."
+  },
+  {
+   "tipo": "andamento",
+   "processo": "4094389-98.2026.8.26.0000",
+   "banco": "Itaú",
+   "texto": "Andamento atualizado",
+   "detalhe": "15/09/2026 — Banco opôs embargos de declaração para tentar reverter o indeferimento do arresto cautelar (agravo já havia sido negado)."
   }
  ]
 };
