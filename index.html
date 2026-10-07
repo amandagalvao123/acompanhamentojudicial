@@ -754,9 +754,9 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "30/09/2026",
-  "fonte": "Planilha SEMANAL (30/09) + Resumo de Citações + Resumo de Bloqueios",
-  "semanaAnterior": "23/09/2026"
+  "atualizadoEm": "07/10/2026",
+  "fonte": "Planilha SEMANAL (07/10) + Resumo de Bloqueios + e-mail Rocha Rocha",
+  "semanaAnterior": "30/09/2026"
  },
  "bancario": [
   {
@@ -925,9 +925,6 @@ let DB = {
      }
     ],
     "estado": "confirmado"
-   },
-   "chg": {
-    "bloqueio": true
    }
   },
   {
@@ -939,7 +936,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "26/03/2026",
    "ccb": "CCB nº 17870 — Capital de Giro PEAC de R$ 1.000.000,00, em 36 parcelas (última 26/05/2026). Deixaram de pagar a partir de 26/11/2025.",
-   "andamento": "21/09/2026 — Débito atualizado para R$ 376.057,59. BLOQUEADO o valor integral de R$ 376.057,59 (aguardando detalhamento por instituição).",
+   "andamento": "30/09/2026 — BLOQUEADOS e confirmados R$ 3.010,57 nas contas: Big Fome R$ 1.724,53 · Amgeza R$ 1.271,43 · Alexandre R$ 14,61. (A ordem tinha teto de R$ 376 mil; o retido de fato foi este.)",
    "partes": [
     {
      "nome": "AMGEZA FOOD COMÉRCIO DE ALIMENTOS LTDA",
@@ -964,14 +961,49 @@ let DB = {
     }
    ],
    "bloqueio": {
-    "total": 376057.59,
-    "semDetalhe": true,
-    "nota": "Ordem de bloqueio emitida. Valor = limite da dívida; o retido de fato depende do saldo das contas (aguardando detalhamento).",
-    "estado": "ordem"
+    "total": 3010.57,
+    "estado": "confirmado",
+    "detalhado": true,
+    "data": "30/09/2026",
+    "partes": [
+     {
+      "parte": "Big Fome Lanches",
+      "valor": 1724.53,
+      "bancos": [
+       [
+        "Inter",
+        1724.53
+       ]
+      ]
+     },
+     {
+      "parte": "Amgeza Food",
+      "valor": 1271.43,
+      "bancos": [
+       [
+        "Santander",
+        1122.16
+       ],
+       [
+        "Inter",
+        149.27
+       ]
+      ]
+     },
+     {
+      "parte": "Alexandre José Martins",
+      "valor": 14.61,
+      "bancos": [
+       [
+        "BMG",
+        14.61
+       ]
+      ]
+     }
+    ]
    },
    "chg": {
     "bloqueio": true,
-    "valorAtualizado": true,
     "andamentoAtualizado": true
    }
   },
@@ -1027,10 +1059,7 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   ]
   },
   {
    "numero": "4080317-97.2026.8.26.0100",
@@ -1072,9 +1101,6 @@ let DB = {
      "data": null
     }
    ],
-   "chg": {
-    "andamentoAtualizado": true
-   },
    "penhora": {
     "estado": "deferida",
     "limite": 579352.89,
@@ -1108,9 +1134,6 @@ let DB = {
      "data": null
     }
    ],
-   "chg": {
-    "andamentoAtualizado": true
-   },
    "penhora": {
     "estado": "deferida",
     "limite": 50216.46,
@@ -1156,10 +1179,6 @@ let DB = {
     "semDetalhe": true,
     "nota": "Ordem de bloqueio em nome da Serbase. O valor é o LIMITE da ordem (dívida) — o quanto foi de fato retido só será conhecido no detalhamento.",
     "estado": "ordem"
-   },
-   "chg": {
-    "bloqueio": true,
-    "andamentoAtualizado": true
    }
   },
   {
@@ -1246,7 +1265,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "09/06/2026",
    "ccb": "CCB nº 17.270.236 — Capital de Giro (Aval) de R$ 543.400,00, em 48 parcelas (última 15/10/2029). Inadimplentes desde 15/12/2025.",
-   "andamento": "27/07/2026 — Retornada citação POSITIVA da Big Fome e negativa do Alexandre José Martins.",
+   "andamento": "01/10/2026 — Expedida citação de Alexandre José Martins (dívida atualizada R$ 705.604,56). Assim que a citação retornar positiva, abre prazo de 3 dias úteis para pagamento voluntário. Big Fome já citada em 27/07.",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
@@ -1262,7 +1281,10 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "4018526-30.2026.8.26.0003",
@@ -1304,9 +1326,6 @@ let DB = {
      "data": null
     }
    ],
-   "chg": {
-    "andamentoAtualizado": true
-   },
    "penhora": {
     "estado": "deferida",
     "limite": 6522550.08,
@@ -1394,10 +1413,6 @@ let DB = {
      "data": "14/09/2026"
     }
    ],
-   "chg": {
-    "valorAtualizado": true,
-    "andamentoAtualizado": true
-   },
    "penhora": {
     "estado": "requerida",
     "limite": 14982.31,
@@ -1490,7 +1505,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "28/07/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "23/09/2026 — Banco requereu a penhora de valores dos executados citados (Big Fome, Alexandre, Serbase, 17 MAJ e Corn), até a dívida atualizada de R$ 2.643.696,55. Requerida também a PENHORA DO VEÍCULO dado em garantia (Jeep Compass, placa RHM3A23) — pendente de decisão.",
+   "andamento": "28/09/2026 — Proferida decisão em SEGREDO DE JUSTIÇA. Provável deferimento da penhora de valores e expedição de mandado da camioneta (Jeep Compass) em nome dos executados (conforme sinalizado via WhatsApp).",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
@@ -1539,18 +1554,17 @@ let DB = {
     "desc": "Jeep Compass Sport TF 2.3 5P Flex, cinza, 2021/2022",
     "placa": "RHM3A23",
     "renavam": "01278754064",
-    "status": "Penhora, avaliação, remoção e venda antecipada requeridas — pendente de decisão"
-   },
-   "chg": {
-    "veiculo": true,
-    "valorAtualizado": true,
-    "andamentoAtualizado": true
+    "status": "Decisão em segredo de justiça (28/09) — provável deferimento do mandado de penhora/remoção."
    },
    "penhora": {
     "estado": "requerida",
     "limite": 2643696.55,
-    "data": "23/09/2026",
-    "partes": "Big Fome, Alexandre, Serbase, 17 MAJ e Corn"
+    "data": "28/09/2026",
+    "partes": "Big Fome, Alexandre, Serbase, 17 MAJ e Corn — decisão em segredo (provável deferimento)"
+   },
+   "chg": {
+    "veiculo": true,
+    "andamentoAtualizado": true
    }
   },
   {
@@ -1919,10 +1933,7 @@ let DB = {
      "status": "na",
      "data": null
     }
-   ],
-   "chg": {
-    "novoProcesso": true
-   }
+   ]
   }
  ],
  "impostos": [
@@ -2117,95 +2128,24 @@ let DB = {
  "mudancas": [
   {
    "tipo": "bloqueio",
-   "processo": "0019048-71.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "RETIDO de fato (confirmado) — R$ 28.928,64",
-   "detalhe": ""
-  },
-  {
-   "tipo": "bloqueio",
    "processo": "0020113-04.2026.8.16.0014",
    "banco": "Santander",
-   "texto": "Ordem de bloqueio emitida (teto) — até R$ 376.057,59",
-   "detalhe": "Aguardando detalhamento por instituição."
-  },
-  {
-   "tipo": "bloqueio",
-   "processo": "4080333-51.2026.8.26.0100",
-   "banco": "Safra",
-   "texto": "Ordem de bloqueio emitida (teto) — até R$ 1.987.877,41",
-   "detalhe": "Bloqueio integral em nome da Serbase Food (aguardando detalhamento por instituição)."
+   "texto": "RETIDO de fato (confirmado) — R$ 3.010,57",
+   "detalhe": "Detalhado por parte e banco."
   },
   {
    "tipo": "veiculo",
    "processo": "0049142-02.2026.8.16.0014",
    "banco": "Santander",
-   "texto": "Penhora de VEÍCULO requerida — Jeep Compass Sport TF 2.3 5P Flex, cinza, 2021/2022",
-   "detalhe": "Placa RHM3A23 · RENAVAM 01278754064. Penhora, avaliação, remoção e venda antecipada requeridas — pendente de decisão"
+   "texto": "Camioneta (Jeep Compass) — decisão em segredo, provável mandado de penhora",
+   "detalhe": "Decisão em segredo de justiça (28/09) — provável deferimento do mandado de penhora/remoção."
   },
   {
-   "tipo": "ativo",
-   "subtipo": "penhora",
-   "processo": "4080317-97.2026.8.26.0100",
-   "banco": "Safra",
-   "texto": "Penhora deferida/requerida",
-   "detalhe": "14/09/2026 — DEFERIDA a penhora de bens e valores de Dona Food, Luiz Otávio e Raphael, até R$ 579.352,89. Pode gerar bloqueios nos próximos dias."
-  },
-  {
-   "tipo": "ativo",
-   "subtipo": "penhora",
-   "processo": "4080355-12.2026.8.26.0100",
-   "banco": "Safra",
-   "texto": "Penhora deferida/requerida",
-   "detalhe": "22/09/2026 — Juiz determinou o cumprimento da penhora de valores da Serbase e o arresto executivo em nome de Gecionil, até R$ 50.216,46. Pode gerar bloqueios nos próximos dias."
-  },
-  {
-   "tipo": "ativo",
-   "subtipo": "penhora",
-   "processo": "4018526-30.2026.8.26.0003",
-   "banco": "Itaú",
-   "texto": "Penhora deferida/requerida",
-   "detalhe": "23/09/2026 — DEFERIDA a penhora de valores de Big Fome e Pazoria, até R$ 6.522.550,08. 25/09/2026 — Banco distribuiu novo agravo de instrumento (4135804-61) para tentar reverter o indeferimento do arresto."
-  },
-  {
-   "tipo": "ativo",
-   "subtipo": "penhora",
-   "processo": "4080117-90.2026.8.26.0100",
-   "banco": "Safra",
-   "texto": "Penhora deferida/requerida",
-   "detalhe": "23/09/2026 — Banco requereu a penhora de valores da Corn Food. Dívida atualizada para R$ 14.982,31."
-  },
-  {
-   "tipo": "ativo",
-   "subtipo": "penhora",
-   "processo": "0049142-02.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "Penhora deferida/requerida",
-   "detalhe": "23/09/2026 — Banco requereu a penhora de valores dos executados citados (Big Fome, Alexandre, Serbase, 17 MAJ e Corn), até a dívida atualizada de R$ 2.643.696,55. Requerida também a PENHORA DO VEÍCULO dado em garantia (Jeep Compass, placa RHM3A23) — pendente de decisão."
-  },
-  {
-   "tipo": "valor",
-   "processo": "0020113-04.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "Débito atualizado: R$ 312.821,62 → R$ 376.057,59 (+R$ 63.235,97)"
-  },
-  {
-   "tipo": "valor",
-   "processo": "4080117-90.2026.8.26.0100",
-   "banco": "Safra",
-   "texto": "Débito atualizado: R$ 12.070,82 → R$ 14.982,31 (+R$ 2.911,49)"
-  },
-  {
-   "tipo": "valor",
-   "processo": "0049142-02.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "Débito atualizado: R$ 2.374.027,90 → R$ 2.643.696,55 (+R$ 269.668,65)"
-  },
-  {
-   "tipo": "novo_processo",
-   "processo": "4135804-61.2026.8.26.0000",
-   "banco": "Itaú",
-   "texto": "Agravo novo — Itaú (recurso ref. 4018526-30.2)"
+   "tipo": "andamento",
+   "processo": "0038855-77.2026.8.16.0014",
+   "banco": "Bradesco",
+   "texto": "Citação expedida",
+   "detalhe": "01/10/2026 — Expedida citação de Alexandre José Martins (dívida atualizada R$ 705.604,56). Assim que a citação retornar positiva, abre prazo de 3 dias úteis para pagamento voluntário. Big Fome já citada em 27/07."
   }
  ]
 };
@@ -2794,7 +2734,7 @@ function buildWhatsApp(){
     t+='\n';
   }
   if(requ.length){ t+='🕐 *Penhora requerida* (pendente de decisão): '+requ.map(p=>p.banco).join(', ')+'\n\n'; }
-  if(veics.length){ veics.forEach(p=>{ t+='🚗 *Veículo em risco:* '+p.veiculo.desc+' (placa '+p.veiculo.placa+') — _'+p.banco+', pendente._\n'; }); t+='\n'; }
+  if(veics.length){ veics.forEach(p=>{ t+='🚗 *Veículo em risco:* '+p.veiculo.desc+' (placa '+p.veiculo.placa+') — _'+p.banco+'. '+(p.veiculo.status||'pendente')+'_\n'; }); t+='\n'; }
 
   t+='━━━━━ 🧾 *FISCAL — RECEITA* ━━━━━\n\n';
   t+='🚦 *Semáforo — fase / risco*\n';
