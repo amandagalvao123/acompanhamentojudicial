@@ -60,7 +60,20 @@ header{
 .tbtn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- KPI ---------- */
-.kpis{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:18px;}
+/* ---------- MANCHETE EXECUTIVA ---------- */
+.manchete{margin-top:18px;border-radius:16px;padding:15px 17px;background:linear-gradient(135deg,#241A45,#3B2A63);color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.manchete::after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,.25),transparent 70%)}
+.manchete .mh{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#B9A9E0;display:flex;align-items:center;gap:7px}
+.manchete .mh .mdate{margin-left:auto;font-weight:700;letter-spacing:.02em;color:#C6B8E8;text-transform:none}
+.manchete .mline{font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;line-height:1.4;margin-top:9px;position:relative;z-index:1}
+.manchete .mstats{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;position:relative;z-index:1}
+.manchete .mstat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:7px 11px;display:flex;flex-direction:column;gap:1px;min-width:0}
+.manchete .mstat{flex:1 1 calc(50% - 8px)}
+.manchete .mstat .msv{font-family:Arial,sans-serif;font-weight:800;font-size:15px;line-height:1.05;letter-spacing:-.02em}
+.manchete .mstat .msl{font-size:10px;color:#C6B8E8;font-weight:600}
+.manchete .mstat.red .msv{color:#FF8A8A} .manchete .mstat.amber .msv{color:#F5C87A} .manchete .mstat.cit .msv{color:#F3B15C}
+
+.kpis{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px;}
 @media(min-width:720px){.kpis{grid-template-columns:repeat(4,1fr)}}
 .kpi{
   background:var(--card); border:1px solid var(--line); border-radius:14px; padding:13px 14px;
@@ -75,8 +88,12 @@ header{
 .kpi.k-cit::before{background:var(--cit-dot)}
 .kpi.k-tot::before{background:var(--brand)}
 .kpi .kl{font-size:11px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.04em;}
-.kpi .kv{font-family:Arial,Helvetica,sans-serif; font-size:22px; font-weight:600; margin-top:3px; line-height:1.05;}
+.kpi .kv{font-family:Arial,Helvetica,sans-serif; font-size:18px; font-weight:700; margin-top:3px; line-height:1.1; letter-spacing:-.02em; word-break:break-word;}
 .kpi .ks{font-size:11.5px; color:var(--muted-2); margin-top:3px;}
+.kpi .ks .kbreak{display:flex;flex-direction:column;margin-top:5px;line-height:1.25}
+.kpi .ks .kbreak>span{color:var(--muted);font-weight:700;font-size:10px}
+.kpi .ks .kbreak b{color:var(--ink);font-weight:800;font-family:Arial,sans-serif;font-size:13px;letter-spacing:-.01em}
+.kpi.k-val .ks{margin-top:5px}
 .kpi .kv small{font-size:13px;font-weight:600;color:var(--muted)}
 
 /* ---------- LEGEND / COMO LER ---------- */
@@ -118,13 +135,14 @@ header{
 .explainer .arr{color:var(--agr-dot);font-weight:700}
 
 /* ---------- TABS ---------- */
-.tabs{display:flex; gap:6px; margin-top:20px; background:var(--lav); padding:5px; border-radius:13px; position:sticky; top:74px; z-index:30; border:1px solid var(--line)}
+.tabs{display:grid; grid-template-columns:repeat(2,1fr); gap:6px; margin-top:20px; background:var(--lav); padding:5px; border-radius:13px; position:sticky; top:74px; z-index:30; border:1px solid var(--line)}
+@media(min-width:560px){.tabs{grid-template-columns:repeat(4,1fr)}}
 .tab{
-  flex:1; text-align:center; padding:10px 8px; border-radius:9px; cursor:pointer;
-  font-weight:700; font-size:13.5px; color:var(--muted); border:1px solid transparent; transition:.15s;
-  display:flex;align-items:center;justify-content:center;gap:7px;
+  text-align:center; padding:10px 6px; border-radius:9px; cursor:pointer;
+  font-weight:700; font-size:13px; color:var(--muted); border:1px solid transparent; transition:.15s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
 }
-.tab .tc{font-size:11px;background:#fff;border:1px solid var(--line);color:var(--muted);padding:1px 7px;border-radius:20px;font-weight:700}
+.tab .tc{font-size:11px;background:#fff;border:1px solid var(--line);color:var(--muted);padding:1px 6px;border-radius:20px;font-weight:700}
 .tab.active{background:#fff; color:var(--brand); box-shadow:var(--shadow-sm); border-color:var(--line)}
 .tab.active .tc{background:var(--brand);color:#fff;border-color:var(--brand)}
 
@@ -335,6 +353,46 @@ header{
 
 /* ---------- BLOQUEIOS TAB ---------- */
 .bloq-intro{font-size:12.5px;color:var(--muted);line-height:1.5;background:#FCFBFE;border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:14px}
+
+/* ---------- RETENÇÕES ---------- */
+.tabs-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabs-scroll .tab{flex:0 0 auto;white-space:nowrap}
+.ret-intro{font-size:12.5px;color:var(--muted);line-height:1.55;background:#FCFBFE;border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:14px}
+.ret-weekcard{background:linear-gradient(135deg,#241A45,#3B2A63);color:#fff;border-radius:15px;padding:15px 16px;box-shadow:var(--shadow)}
+.ret-weekcard .rwh{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#B9A9E0;display:flex;align-items:center;gap:7px}
+.ret-weekcard .rwh .rwdate{margin-left:auto;color:#C6B8E8;text-transform:none;letter-spacing:.02em}
+.ret-weekcard .rwbody{margin-top:11px;display:flex;flex-direction:column;gap:9px}
+.ret-weekcard .rwrow{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:11px;padding:10px 12px}
+.ret-weekcard .rwt{font-size:11px;font-weight:800;color:#F3B15C;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.03em}
+.ret-weekcard .rwt.jud{color:#FF8A8A}
+.ret-weekcard .rwl{font-size:13px;color:#EDE7FA;line-height:1.5;margin-top:4px}
+.ret-weekcard .rwl b{color:#fff}
+.ret-weekcard .rwempty{font-size:12.5px;color:#C6B8E8;font-style:italic}
+
+.ret-row{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;box-shadow:var(--shadow-sm);overflow:hidden;position:relative}
+.ret-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.ret-row.jud::before{background:#DC2626} .ret-row.vinc::before{background:#2C5AA0}
+.ret-head{padding:12px 14px;display:flex;gap:11px;align-items:flex-start}
+.ret-datebox{flex:0 0 auto;width:48px;text-align:center;background:var(--lav);border-radius:10px;padding:6px 4px}
+.ret-datebox .rd{font-family:Arial,sans-serif;font-size:18px;font-weight:800;color:var(--brand);line-height:1}
+.ret-datebox .rm{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.04em;margin-top:2px}
+.ret-mid{flex:1;min-width:0}
+.ret-mid .rtype{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:2px 7px;border-radius:5px;display:inline-flex;align-items:center;gap:4px}
+.rtype.t-jud{background:var(--neg-bg);color:var(--neg-tx)} .rtype.t-vinc{background:#EAF1FB;color:#2C5AA0}
+.ret-mid .rwho{font-size:13px;font-weight:700;margin-top:6px;line-height:1.25}
+.ret-mid .rsub{font-size:11px;color:var(--muted-2);margin-top:2px;font-family:ui-monospace,monospace;word-break:break-all}
+.ret-amt{flex:0 0 auto;text-align:right}
+.ret-amt .rav{font-family:Arial,sans-serif;font-weight:800;font-size:16px;white-space:nowrap}
+.ret-row.jud .rav{color:#DC2626} .ret-row.vinc .rav{color:#2C5AA0}
+.ret-amt .ral{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--muted-2);letter-spacing:.03em}
+.ret-detail{border-top:1px solid var(--line);padding:11px 14px;background:#FCFBFE;font-size:12px}
+.ret-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.ret-flow .rf{background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:11.5px}
+.ret-flow .rf b{display:block;font-size:12.5px;font-weight:800}
+.ret-flow .rf.anterior b{color:var(--muted)} .ret-flow .rf.novo b{color:#2C5AA0} .ret-flow .rf.saldo b{color:#059669}
+.ret-flow .rarr{color:var(--muted-2);font-weight:700}
+.ret-dest{font-size:11.5px;color:#7A1D1D;background:var(--neg-bg);border:1px solid var(--neg-bd);border-radius:8px;padding:6px 9px;margin-top:4px}
+.ret-dest .rdh{font-weight:800;font-size:10px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px}
 
 /* ---------- FAIXA DE BLOQUEIOS (home) ---------- */
 .bloq-connector{display:none;justify-content:center;margin-top:6px;margin-bottom:-4px}
@@ -614,6 +672,7 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
   <div class="tabs">
     <div class="tab active" data-tab="banc" onclick="switchTab('banc')">🏦 Bancário <span class="tc" id="tcBanc">0</span></div>
     <div class="tab" data-tab="bloq" onclick="switchTab('bloq')">💰 Bloqueios <span class="tc" id="tcBloq">0</span></div>
+    <div class="tab" data-tab="ret" onclick="switchTab('ret')">📅 Retenções <span class="tc" id="tcRet">0</span></div>
     <div class="tab" data-tab="fisc" onclick="switchTab('fisc')">🧾 Impostos <span class="tc" id="tcFisc">0</span></div>
   </div>
 
@@ -689,6 +748,23 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
     <div id="bloqSections"></div>
   </div>
 
+  <!-- ===== RETENÇÕES ===== -->
+  <div class="view" id="view-ret">
+    <div class="ret-intro">💸 <b>Retenções reais</b> — o dinheiro que de fato foi retido, com data. Dois tipos:<br>
+    ⚖️ <b>Judicial</b> — bloqueio de valores por ordem da Justiça (SISBAJUD), referente a um processo.<br>
+    🔗 <b>Conta Vinculada (iFood 1%)</b> — retenção automática do iFood como garantia dos empréstimos/FGI.</div>
+    <div class="ret-weekcard" id="retWeek"></div>
+    <div class="filter-grp" style="margin-top:14px">
+      <div class="flabel">Filtrar por tipo</div>
+      <div class="chips" id="retTypeChips"></div>
+    </div>
+    <div class="filter-grp">
+      <div class="flabel">Filtrar por mês</div>
+      <div class="chips" id="retMonthChips"></div>
+    </div>
+    <div id="retList"></div>
+  </div>
+
   <!-- ===== IMPOSTOS ===== -->
   <div class="view" id="view-fisc">
     <div class="chart-card">
@@ -754,9 +830,9 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "07/10/2026",
-  "fonte": "Planilha SEMANAL (07/10) + Resumo de Bloqueios + e-mail Rocha Rocha",
-  "semanaAnterior": "30/09/2026"
+  "atualizadoEm": "23/10/2026",
+  "fonte": "Planilha SEMANAL (23/10) + Resumo de Citações + Resumo de Bloqueios",
+  "semanaAnterior": "07/10/2026"
  },
  "bancario": [
   {
@@ -924,7 +1000,8 @@ let DB = {
       ]
      }
     ],
-    "estado": "confirmado"
+    "estado": "confirmado",
+    "data": "24/08/2026"
    }
   },
   {
@@ -1001,10 +1078,6 @@ let DB = {
       ]
      }
     ]
-   },
-   "chg": {
-    "bloqueio": true,
-    "andamentoAtualizado": true
    }
   },
   {
@@ -1043,7 +1116,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "19/05/2026",
    "ccb": "CCB nº 6888036 — Capital de Giro Aval de R$ 500.000,00, em 41 parcelas (última 27/11/2028). Inadimplentes desde a 5ª parcela.",
-   "andamento": "14/09 e 18/09/2026 — Expedidas citações de Omar Aparecido e Corn Food para pagamento da dívida atualizada (R$ 717.356,01). Aguardando retorno positivo para abrir prazo de 3 dias úteis.",
+   "andamento": "05/10/2026 — Citação POSITIVA de Omar Aparecido. Citação da Corn Food retornou NEGATIVA. Dívida atualizada: R$ 717.356,01.",
    "partes": [
     {
      "nome": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA",
@@ -1056,10 +1129,14 @@ let DB = {
      "nome": "OMAR APARECIDO ALVES",
      "doc": "730.859.109-30",
      "tipo": "PF",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "05/10/2026",
+     "novoCitado": true
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "4080317-97.2026.8.26.0100",
@@ -1150,7 +1227,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "11/05/2026",
    "ccb": "CCB nº 005388936 — R$ 2.200.000,00. Inadimplentes desde 09/03/2026.",
-   "andamento": "22/09/2026 — Expedidas cartas de citação de Raphael e Gecionil (dívida R$ 1.708.113,28). BLOQUEADO R$ 1.987.877,41 em nome da Serbase Food.",
+   "andamento": "08/10/2026 — Retornadas NEGATIVAS as citações de Gecionil Gomes e Raphael Palma. Serbase já citada (22/06). Bloqueio (ordem) de R$ 1.987.877,41 segue sem detalhamento.",
    "partes": [
     {
      "nome": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA",
@@ -1179,6 +1256,9 @@ let DB = {
     "semDetalhe": true,
     "nota": "Ordem de bloqueio em nome da Serbase. O valor é o LIMITE da ordem (dívida) — o quanto foi de fato retido só será conhecido no detalhamento.",
     "estado": "ordem"
+   },
+   "chg": {
+    "andamentoAtualizado": true
    }
   },
   {
@@ -1281,10 +1361,7 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   ]
   },
   {
    "numero": "4018526-30.2026.8.26.0003",
@@ -1554,17 +1631,13 @@ let DB = {
     "desc": "Jeep Compass Sport TF 2.3 5P Flex, cinza, 2021/2022",
     "placa": "RHM3A23",
     "renavam": "01278754064",
-    "status": "Decisão em segredo de justiça (28/09) — provável deferimento do mandado de penhora/remoção."
+    "status": "Aguardando o jurídico enviar a expedição do carro. Por hora, nada atualizado."
    },
    "penhora": {
     "estado": "requerida",
     "limite": 2643696.55,
     "data": "28/09/2026",
     "partes": "Big Fome, Alexandre, Serbase, 17 MAJ e Corn — decisão em segredo (provável deferimento)"
-   },
-   "chg": {
-    "veiculo": true,
-    "andamentoAtualizado": true
    }
   },
   {
@@ -2127,27 +2200,99 @@ let DB = {
  ],
  "mudancas": [
   {
-   "tipo": "bloqueio",
-   "processo": "0020113-04.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "RETIDO de fato (confirmado) — R$ 3.010,57",
-   "detalhe": "Detalhado por parte e banco."
-  },
-  {
-   "tipo": "veiculo",
-   "processo": "0049142-02.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "Camioneta (Jeep Compass) — decisão em segredo, provável mandado de penhora",
-   "detalhe": "Decisão em segredo de justiça (28/09) — provável deferimento do mandado de penhora/remoção."
+   "tipo": "citacao",
+   "processo": "0034070-72.2026.8.16.0014",
+   "banco": "Bradesco",
+   "texto": "OMAR APARECIDO ALVES citada em 05/10/2026"
   },
   {
    "tipo": "andamento",
-   "processo": "0038855-77.2026.8.16.0014",
-   "banco": "Bradesco",
-   "texto": "Citação expedida",
-   "detalhe": "01/10/2026 — Expedida citação de Alexandre José Martins (dívida atualizada R$ 705.604,56). Assim que a citação retornar positiva, abre prazo de 3 dias úteis para pagamento voluntário. Big Fome já citada em 27/07."
+   "processo": "4080333-51.2026.8.26.0100",
+   "banco": "Safra",
+   "texto": "Andamento atualizado",
+   "detalhe": "08/10/2026 — Retornadas NEGATIVAS as citações de Gecionil Gomes e Raphael Palma. Serbase já citada (22/06). Bloqueio (ordem) de R$ 1.987.877,41 segue sem detalhamento."
   }
- ]
+ ],
+ "historico": [
+  {
+   "data": "ago",
+   "retido": 28928.64,
+   "citados": 8
+  },
+  {
+   "data": "04/09",
+   "retido": 28928.64,
+   "citados": 11
+  },
+  {
+   "data": "16/09",
+   "retido": 28928.64,
+   "citados": 13
+  },
+  {
+   "data": "23/09",
+   "retido": 28928.64,
+   "citados": 15
+  },
+  {
+   "data": "30/09",
+   "retido": 28928.64,
+   "citados": 15
+  },
+  {
+   "data": "07/10",
+   "retido": 31939.21,
+   "citados": 15
+  },
+  {
+   "data": "23/10",
+   "retido": 31939.21,
+   "citados": 16
+  }
+ ],
+ "retencoes": {
+  "judiciais": [
+   {
+    "data": "24/08/2026",
+    "processo": "0019048-71.2026.8.16.0014",
+    "banco": "Santander",
+    "empresas": "Amgeza, Big Fome, Corn, Serbase, Dona + Alexandre",
+    "valor": 28928.64
+   },
+   {
+    "data": "30/09/2026",
+    "processo": "0020113-04.2026.8.16.0014",
+    "banco": "Santander",
+    "empresas": "Big Fome, Amgeza, Alexandre",
+    "valor": 3010.57
+   }
+  ],
+  "vinculada": [
+   {
+    "data": "21/10/2026",
+    "banco": "Santander",
+    "empresas": "Big Fome e Amgeza",
+    "anterior": 503.43,
+    "novo": 14086.35,
+    "destinacao": [
+     {
+      "valor": 13506.41,
+      "desc": "Pagamento parcela Big Fome — FGI"
+     }
+    ],
+    "tipo": "iFood 1%"
+   },
+   {
+    "data": "23/10/2026",
+    "banco": "Safra",
+    "empresas": "Serbase",
+    "anterior": 12403.45,
+    "novo": 3338.1,
+    "destinacao": [],
+    "tipo": "iFood 1%"
+   }
+  ]
+ }
 };
 
 /* ====== helpers ====== */
@@ -2162,7 +2307,7 @@ const fmtShort = v => {
   return fmt(v);
 };
 const esc = s => (s==null?"":String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let bankFilter="all", statusFilter="all", faseFilter="all", nameFilter="all", nameStatusFilter="all", namePick="all", bancMode="proc";
+let bankFilter="all", statusFilter="all", faseFilter="all", nameFilter="all", nameStatusFilter="all", namePick="all", bancMode="proc", retTypeFilter="all", retMonthFilter="all";
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600);}
 
@@ -2178,11 +2323,11 @@ function renderKPIs(){
 
   const kpis=[
     {cls:'k-tot',l:'Total de processos',v:totalProc,s:DB.bancario.length+' bancários · '+DB.impostos.length+' fiscais'},
-    {cls:'k-val',l:'Passivo total',v:fmtShort(totalBanc+totalFisc),s:'bancário + fiscal'},
+    {cls:'k-val',l:'Passivo total',v:fmt(totalBanc+totalFisc),s:'<span class="kbreak"><span>🏦 Bancário</span><b>'+fmt(totalBanc)+'</b></span><span class="kbreak"><span>🧾 Fiscal</span><b>'+fmt(totalFisc)+'</b></span>'},
     nBloq>0
-      ? {cls:'k-bloq',l:'Retido de fato',v:fmtShort(totalConf),s:'confirmado nas contas · ver bloqueios ↓'}
-      : {cls:'k-banc',l:'Passivo bancário',v:fmtShort(totalBanc),s:exec.length+' execuções · '+agr.length+' agravos'},
-    {cls:'k-fis',l:'Passivo fiscal',v:fmtShort(totalFisc),s:DB.impostos.length+' execuções fiscais'},
+      ? {cls:'k-bloq',l:'Retido de fato',v:fmt(totalConf),s:'confirmado nas contas · ver bloqueios ↓'}
+      : {cls:'k-banc',l:'Passivo bancário',v:fmt(totalBanc),s:exec.length+' execuções · '+agr.length+' agravos'},
+    {cls:'k-fis',l:'Passivo fiscal',v:fmt(totalFisc),s:DB.impostos.length+' execuções fiscais'},
   ];
   document.getElementById('kpis').innerHTML = kpis.map(k=>`
     <div class="kpi ${k.cls}">
@@ -2197,6 +2342,123 @@ function renderKPIs(){
   document.getElementById('tcFisc').textContent = DB.impostos.length;
   const nb=DB.bancario.filter(p=>p.bloqueio||p.penhora||p.veiculo).length;
   const tcb=document.getElementById('tcBloq'); if(tcb) tcb.textContent=nb;
+  const rr=DB.retencoes||{judiciais:[],vinculada:[]};
+  const tcr=document.getElementById('tcRet'); if(tcr) tcr.textContent=(rr.judiciais||[]).length+(rr.vinculada||[]).length;
+  renderManchete(totalConf);
+}
+
+/* ====== RETENÇÕES ====== */
+const MESES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+function retEventos(){
+  const rr=DB.retencoes||{judiciais:[],vinculada:[]};
+  const ev=[];
+  (rr.judiciais||[]).forEach(r=>ev.push({tipo:'jud',data:r.data,banco:r.banco,quem:r.empresas,ref:r.processo,valor:r.valor}));
+  (rr.vinculada||[]).forEach(r=>{
+    const dest=(r.destinacao||[]).reduce((s,d)=>s+d.valor,0);
+    ev.push({tipo:'vinc',data:r.data,banco:r.banco,quem:r.empresas,ref:(r.tipo||'iFood 1%'),valor:r.novo,anterior:r.anterior,novo:r.novo,dest:dest,destList:r.destinacao||[],saldo:r.anterior+r.novo-dest});
+  });
+  // ordena por data desc
+  const pd=s=>{const[d,m,y]=s.split('/').map(Number);return new Date(y,m-1,d).getTime();};
+  ev.sort((a,b)=>pd(b.data)-pd(a.data));
+  return ev;
+}
+function renderRetChips(){
+  const ev=retEventos();
+  // tipo
+  const tcount=k=>ev.filter(e=>k==='all'?true:e.tipo===k).length;
+  const ty=[['all','Todas',''],['jud','⚖️ Judiciais','jud'],['vinc','🔗 Conta Vinculada','vinc']];
+  document.getElementById('retTypeChips').innerHTML=ty.map(([k,l])=>
+    `<button class="chip ${retTypeFilter===k?'active':''}" onclick="setRetType('${k}')">${l}<span class="cnt">${tcount(k)}</span></button>`).join('');
+  // mês (dos eventos existentes)
+  const mset=[...new Set(ev.map(e=>{const[d,m,y]=e.data.split('/');return m+'/'+y;}))];
+  mset.sort((a,b)=>{const[ma,ya]=a.split('/');const[mb,yb]=b.split('/');return (yb-ya)||(mb-ma);});
+  const mchips=['all',...mset];
+  document.getElementById('retMonthChips').innerHTML=mchips.map(m=>{
+    const lbl=m==='all'?'Todos os meses':(MESES[+m.split('/')[0]-1]+'/'+m.split('/')[1].slice(2));
+    const c=ev.filter(e=>{if(m==='all')return true;const[d,mm,y]=e.data.split('/');return mm+'/'+y===m;}).length;
+    return `<button class="chip ${retMonthFilter===m?'active':''}" onclick="setRetMonth('${m}')">${lbl}<span class="cnt">${c}</span></button>`;
+  }).join('');
+}
+function setRetType(k){retTypeFilter=k;renderRetChips();renderRetList();}
+function setRetMonth(m){retMonthFilter=m;renderRetChips();renderRetList();}
+function renderRetWeek(){
+  const el=document.getElementById('retWeek'); if(!el)return;
+  const rr=DB.retencoes||{judiciais:[],vinculada:[]};
+  const semana=DB.meta?.atualizadoEm||'';
+  // eventos recentes: últimos com data >= semanaAnterior
+  const pd=s=>{const[d,m,y]=s.split('/').map(Number);return new Date(y,m-1,d).getTime();};
+  const corte=DB.meta?.semanaAnterior?pd(DB.meta.semanaAnterior):0;
+  const jud=(rr.judiciais||[]).filter(r=>pd(r.data)>corte);
+  const vinc=(rr.vinculada||[]).filter(r=>pd(r.data)>corte);
+  let rows='';
+  if(vinc.length){
+    rows+=vinc.map(r=>{const dest=(r.destinacao||[]).reduce((s,d)=>s+d.valor,0);const saldo=r.anterior+r.novo-dest;
+      return `<div class="rwrow"><div class="rwt">🔗 Conta vinculada (iFood 1%) · ${esc(r.data)}</div>
+      <div class="rwl">🏦 ${esc(r.banco)} — ${esc(r.empresas)}<br>Retido agora: <b>${fmt(r.novo)}</b>${dest?' · usado p/ FGI: <b>'+fmt(dest)+'</b>':''} · saldo na conta: <b>${fmt(saldo)}</b></div></div>`;}).join('');
+  }
+  if(jud.length){
+    rows+=jud.map(r=>`<div class="rwrow"><div class="rwt jud">⚖️ Bloqueio judicial · ${esc(r.data)}</div>
+      <div class="rwl">🏦 ${esc(r.banco)} — proc. ${esc(r.processo.slice(0,13))}<br>Retido: <b>${fmt(r.valor)}</b></div></div>`).join('');
+  }
+  if(!rows) rows='<div class="rwempty">Sem novas retenções desde '+(DB.meta?.semanaAnterior||'a última semana')+'.</div>';
+  el.innerHTML=`<div class="rwh">💸 Retenções da semana <span class="rwdate">${esc(semana)}</span></div><div class="rwbody">${rows}</div>`;
+}
+function renderRetList(){
+  let ev=retEventos();
+  if(retTypeFilter!=='all') ev=ev.filter(e=>e.tipo===retTypeFilter);
+  if(retMonthFilter!=='all') ev=ev.filter(e=>{const[d,m,y]=e.data.split('/');return m+'/'+y===retMonthFilter;});
+  const el=document.getElementById('retList');
+  if(!ev.length){el.innerHTML=emptyState('Nenhuma retenção neste filtro.');return;}
+  el.innerHTML=ev.map((e,i)=>{
+    const[d,m]=e.data.split('/');
+    const datebox=`<div class="ret-datebox"><div class="rd">${d}</div><div class="rm">${MESES[+m-1]}</div></div>`;
+    const typetag=e.tipo==='jud'?'<span class="rtype t-jud">⚖️ Judicial</span>':'<span class="rtype t-vinc">🔗 iFood 1%</span>';
+    let detail='';
+    if(e.tipo==='vinc'){
+      detail=`<div class="ret-detail">
+        <div class="ret-flow">
+          <div class="rf anterior">anterior<b>${fmt(e.anterior)}</b></div><span class="rarr">+</span>
+          <div class="rf novo">retido ${esc(e.data)}<b>${fmt(e.novo)}</b></div>
+          ${e.dest?`<span class="rarr">−</span><div class="rf">destinado<b>${fmt(e.dest)}</b></div>`:''}
+          <span class="rarr">=</span><div class="rf saldo">saldo<b>${fmt(e.saldo)}</b></div>
+        </div>
+        ${e.destList&&e.destList.length?`<div class="ret-dest"><div class="rdh">Destinação</div>${e.destList.map(x=>fmt(x.valor)+' — '+esc(x.desc)).join('<br>')}</div>`:''}
+      </div>`;
+    }
+    return `<div class="ret-row ${e.tipo}">
+      <div class="ret-head">
+        ${datebox}
+        <div class="ret-mid">${typetag}<div class="rwho">🏦 ${esc(e.banco)} — ${esc(e.quem)}</div><div class="rsub">${esc(e.ref)}</div></div>
+        <div class="ret-amt"><div class="rav">${fmt(e.valor)}</div><div class="ral">${e.tipo==='vinc'?'retido':'bloqueado'}</div></div>
+      </div>
+      ${detail}
+    </div>`;
+  }).join('');
+}
+function renderRetencoes(){ renderRetWeek(); renderRetChips(); renderRetList(); }
+
+function renderManchete(totalConf){
+  const el=document.getElementById('manchete'); if(!el)return;
+  // citados (partes únicas)
+  const docs=new Set();
+  DB.bancario.forEach(p=>{if(p.tipo==='Execução')p.partes.forEach(x=>{if(x.status==='citado')docs.add((x.doc||'').replace(/[^0-9]/g,'')||x.nome)});});
+  const nCit=docs.size;
+  const defe=DB.bancario.filter(p=>(p.penhora||{}).estado==='deferida');
+  const tDefe=defe.reduce((s,p)=>s+(p.penhora.limite||0),0);
+  const veic=DB.bancario.filter(p=>p.veiculo).length;
+  // frase-manchete pelo fato mais crítico
+  let frase;
+  if(veic) frase='Camioneta <b>Jeep Compass</b> sob risco de penhora, e <b>'+fmt(totalConf)+'</b> já bloqueados nas contas.';
+  else frase='<b>'+fmt(totalConf)+'</b> já bloqueados; <b>'+fmt(tDefe)+'</b> em penhora deferida à espera de bloqueio.';
+  const stats=[
+    {cls:'red',v:fmt(totalConf),l:'retido de fato'},
+    {cls:'amber',v:'até '+fmt(tDefe),l:'penhora deferida'},
+    {cls:'cit',v:nCit,l:'partes citadas'},
+    {cls:'',v:veic,l:'veículo em risco'},
+  ];
+  el.innerHTML=`<div class="mh">⚠️ Panorama de risco <span class="mdate">${esc(DB.meta?.atualizadoEm||'')}</span></div>
+    <div class="mline">${frase}</div>
+    <div class="mstats">${stats.map(s=>`<div class="mstat ${s.cls}"><span class="msv">${s.v}</span><span class="msl">${esc(s.l)}</span></div>`).join('')}</div>`;
 }
 
 /* ====== CHART: valor por banco ====== */
@@ -2905,7 +3167,7 @@ function toggleDashDetail(cat){
 function renderAll(){
   renderKPIs(); renderNovidades(); renderBankChart(); renderFaseChart(); renderBloqueios();
   renderChips(); renderFaseChips(); renderBanc(); renderFisc();
-  renderNameFilters(); renderRoster();
+  renderNameFilters(); renderRoster(); renderRetencoes();
 }
 renderAll();
 </script>
