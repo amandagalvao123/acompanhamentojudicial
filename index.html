@@ -411,7 +411,7 @@ header{
 .bs-cell::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px}
 .bs-cell.c-efet::before{background:#DC2626} .bs-cell.c-ordem::before{background:#E08600} .bs-cell.c-defe::before{background:#B45309} .bs-cell.c-requ::before{background:#64748B} .bs-cell.c-veic::before{background:#2C5AA0}
 .bs-cell .cl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);display:flex;align-items:center;gap:4px;line-height:1.2}
-.bs-cell .cv{font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:800;margin-top:4px;line-height:1.05}
+.bs-cell .cv{font-family:Arial,Helvetica,sans-serif;font-size:13.5px;font-weight:800;margin-top:4px;line-height:1.1;letter-spacing:-.02em;word-break:break-word}
 .bs-cell.c-efet .cv{color:#DC2626} .bs-cell.c-ordem .cv{color:#E08600} .bs-cell.c-defe .cv{color:#B45309}
 .bs-cell .cs{font-size:10.5px;color:var(--muted-2);margin-top:3px;line-height:1.3}
 .bdash{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:6px}
@@ -440,7 +440,7 @@ header{
 .bsec.flash{animation:secflash 1.4s ease}
 @keyframes secflash{0%{background:#FFF6D6;border-radius:12px}60%{background:#FFF6D6;border-radius:12px}100%{background:transparent}}
 .bcard .bl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);display:flex;align-items:center;gap:5px}
-.bcard .bval{font-family:Arial,Helvetica,sans-serif;font-size:20px;font-weight:800;margin-top:5px;line-height:1.05}
+.bcard .bval{font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:800;margin-top:5px;line-height:1.1;letter-spacing:-.02em;word-break:break-word}
 .bcard.b-efet .bval{color:#DC2626} .bcard.b-defe .bval{color:#B45309}
 .bcard .bsub{font-size:11px;color:var(--muted-2);margin-top:4px;line-height:1.35}
 .bsec{margin-top:18px;scroll-margin-top:90px}
@@ -3069,9 +3069,9 @@ function renderBloqueios(){
 
   // DASH — 5 caixinhas, cada uma abre o detalhe inline abaixo
   const dash=[
-    {cls:'b-efet',ic:'✅',l:'Retido de fato',v:fmtShort(tConf),s:'dinheiro que JÁ SAIU da conta ('+conf.length+')',cat:'efet'},
-    {cls:'b-ordem',ic:'📤',l:'Ordem emitida',v:'até '+fmtShort(tOrdem),s:'bloqueio disparado — valor real a confirmar ('+ordem.length+')',cat:'ordem'},
-    {cls:'b-defe',ic:'⚖️',l:'Penhora deferida',v:'até '+fmtShort(tDefe),s:'juiz autorizou, mas AINDA NÃO bloqueou ('+defe.length+')',cat:'defe'},
+    {cls:'b-efet',ic:'✅',l:'Retido de fato',v:fmt(tConf),s:'dinheiro que JÁ SAIU da conta ('+conf.length+')',cat:'efet'},
+    {cls:'b-ordem',ic:'📤',l:'Ordem emitida',v:'até '+fmt(tOrdem),s:'bloqueio disparado — valor real a confirmar ('+ordem.length+')',cat:'ordem'},
+    {cls:'b-defe',ic:'⚖️',l:'Penhora deferida',v:'até '+fmt(tDefe),s:'juiz autorizou, mas AINDA NÃO bloqueou ('+defe.length+')',cat:'defe'},
     {cls:'b-requ',ic:'🕐',l:'Requerida',v:requ.length,s:'banco pediu — juiz ainda não decidiu',cat:'requ'},
     {cls:'b-veic',ic:'🚗',l:'Veículo',v:veic.length,s:veic.length?'carro que pode ser penhorado':'—',cat:'veic'},
   ];
@@ -3125,9 +3125,9 @@ function renderBloqueios(){
     else{
       strip.style.display='block'; if(conn)conn.style.display='flex';
       const cells=[
-        {cls:'c-efet',ic:'✅',l:'Retido de fato',v:fmtShort(tConf),s:'já saiu da conta',cat:'efet'},
-        {cls:'c-ordem',ic:'📤',l:'Ordem emitida',v:'até '+fmtShort(tOrdem),s:'disparado · valor a confirmar',cat:'ordem'},
-        {cls:'c-defe',ic:'⚖️',l:'Deferida',v:'até '+fmtShort(tDefe),s:'juiz liberou · sem bloqueio',cat:'defe'},
+        {cls:'c-efet',ic:'✅',l:'Retido de fato',v:fmt(tConf),s:'já saiu da conta',cat:'efet'},
+        {cls:'c-ordem',ic:'📤',l:'Ordem emitida',v:'até '+fmt(tOrdem),s:'disparado · valor a confirmar',cat:'ordem'},
+        {cls:'c-defe',ic:'⚖️',l:'Deferida',v:'até '+fmt(tDefe),s:'juiz liberou · sem bloqueio',cat:'defe'},
         {cls:'c-requ',ic:'🕐',l:'Requerida',v:requ.length,s:'banco pediu · sem decisão',cat:'requ'},
         {cls:'c-veic',ic:'🚗',l:'Veículo',v:veic.length,s:'pode ser penhorado',cat:'veic'},
       ];
