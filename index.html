@@ -830,9 +830,9 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "23/10/2026",
-  "fonte": "Planilha SEMANAL (23/10) + Resumo de Citações + Resumo de Bloqueios",
-  "semanaAnterior": "07/10/2026"
+  "atualizadoEm": "28/10/2026",
+  "fonte": "Planilha SEMANAL (28/10) + Resumo de Citações + Resumo de Bloqueios",
+  "semanaAnterior": "23/10/2026"
  },
  "bancario": [
   {
@@ -1130,13 +1130,10 @@ let DB = {
      "doc": "730.859.109-30",
      "tipo": "PF",
      "status": "citado",
-     "data": "05/10/2026",
-     "novoCitado": true
+     "data": "05/10/2026"
     }
    ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   "chg": {}
   },
   {
    "numero": "4080317-97.2026.8.26.0100",
@@ -1174,7 +1171,7 @@ let DB = {
      "nome": "MARIA EDUARDA ALVES",
      "doc": "105.010.159-65",
      "tipo": "PF",
-     "status": "citado",
+     "status": "nao",
      "data": null
     }
    ],
@@ -1227,7 +1224,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "11/05/2026",
    "ccb": "CCB nº 005388936 — R$ 2.200.000,00. Inadimplentes desde 09/03/2026.",
-   "andamento": "08/10/2026 — Retornadas NEGATIVAS as citações de Gecionil Gomes e Raphael Palma. Serbase já citada (22/06). Bloqueio (ordem) de R$ 1.987.877,41 segue sem detalhamento.",
+   "andamento": "16/10/2026 — O credor (Safra) apresentou o valor ATUALIZADO do débito: R$ 2.053.914,14 (a capa do processo ainda registra R$ 1.708.113,28). Citações de Gecionil e Raphael seguem negativas (08/10); Serbase citada em 22/06. A ordem de bloqueio de R$ 1.987.877,41 continua sem detalhamento.",
    "partes": [
     {
      "nome": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA",
@@ -1479,8 +1476,8 @@ let DB = {
      "nome": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA",
      "doc": "42.649.933/0001-54",
      "tipo": "PJ",
-     "status": "segredo",
-     "data": null
+     "status": "citado",
+     "data": "20/07/2026"
     },
     {
      "nome": "OMAR APARECIDO ALVES",
@@ -1725,7 +1722,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "10/08/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "25/08/2026 — Expedidas citações para Gecionil, Omar e Raphael para pagamento voluntário em 3 dias úteis.",
+   "andamento": "09/10/2026 — Retornadas NEGATIVAS as citações de Serbase, 17 MAJ e Amgeza. Nenhuma parte citada até agora (citações iniciais expedidas em 25/08 para Gecionil, Omar e Raphael).",
    "partes": [
     {
      "nome": "17 MAJ TREINAMENTOS E SERV LTDA",
@@ -1797,7 +1794,10 @@ let DB = {
      "status": "nao",
      "data": null
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "4063244-24.2026.8.26.0000",
@@ -2157,7 +2157,7 @@ let DB = {
    "cdas": "176136487",
    "tributo": "Contribuição Previdenciária",
    "adv": "-",
-   "andamento": "Expedida carta de citação pelo correio.",
+   "andamento": "Carta de citação expedida pelo correio (15/06). Posteriormente, o exequente peticionou requerendo penhora on-line na modalidade “teimosinha”, via SISBAJUD — pode gerar constrição.",
    "dataMov": "15/06/2026",
    "fase": "Citação",
    "valor": 171110.99,
@@ -2174,7 +2174,7 @@ let DB = {
    "cdas": "90425214936-03; 90425214839-85; 90425215007-40",
    "tributo": "Div. Ativa - Contrib. Segurados",
    "adv": "-",
-   "andamento": "Concluso para despacho citatório.",
+   "andamento": "Expedição de carta de citação dos executados ainda não citados.",
    "dataMov": "15/05/2026",
    "fase": "Citação",
    "valor": 1638301.32,
@@ -2200,17 +2200,25 @@ let DB = {
  ],
  "mudancas": [
   {
+   "tipo": "valor",
+   "processo": "4080333-51.2026.8.26.0100",
+   "banco": "Safra",
+   "texto": "Credor apresentou valor atualizado do débito: R$ 2.053.914,14",
+   "detalhe": "16/10/2026 — A capa do processo ainda registra R$ 1.708.113,28. Citações de Gecionil e Raphael seguem negativas; Serbase citada em 22/06. Ordem de bloqueio de R$ 1.987.877,41 segue sem detalhamento."
+  },
+  {
    "tipo": "citacao",
-   "processo": "0034070-72.2026.8.16.0014",
-   "banco": "Bradesco",
-   "texto": "OMAR APARECIDO ALVES citada em 05/10/2026"
+   "processo": "0051853-77.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "Citações negativas de Serbase, 17 MAJ e Amgeza",
+   "detalhe": "09/10/2026 — Processo ainda sem nenhuma parte citada. Iniciais expedidas em 25/08 para Gecionil, Omar e Raphael."
   },
   {
    "tipo": "andamento",
-   "processo": "4080333-51.2026.8.26.0100",
-   "banco": "Safra",
-   "texto": "Andamento atualizado",
-   "detalhe": "08/10/2026 — Retornadas NEGATIVAS as citações de Gecionil Gomes e Raphael Palma. Serbase já citada (22/06). Bloqueio (ordem) de R$ 1.987.877,41 segue sem detalhamento."
+   "processo": "5004586-81.2026.4.04.7001",
+   "banco": "Fiscal · Big Fome",
+   "texto": "Execução fiscal — exequente pediu penhora on-line (teimosinha/SISBAJUD)",
+   "detalhe": "Contribuição Previdenciária, R$ 171.110,99. O pedido de bloqueio recorrente via SISBAJUD pode levar à constrição nas próximas semanas."
   }
  ],
  "historico": [
@@ -2246,6 +2254,11 @@ let DB = {
   },
   {
    "data": "23/10",
+   "retido": 31939.21,
+   "citados": 16
+  },
+  {
+   "data": "28/10",
    "retido": 31939.21,
    "citados": 16
   }
