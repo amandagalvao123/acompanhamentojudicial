@@ -830,9 +830,9 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "28/10/2026",
-  "fonte": "Planilha SEMANAL (28/10) + Resumo de Citações + Resumo de Bloqueios",
-  "semanaAnterior": "23/10/2026"
+  "atualizadoEm": "04/11/2026",
+  "fonte": "Planilha SEMANAL (04/11) + Resumo de Citações + Resumo de Bloqueios",
+  "semanaAnterior": "28/10/2026"
  },
  "bancario": [
   {
@@ -1254,9 +1254,7 @@ let DB = {
     "nota": "Ordem de bloqueio em nome da Serbase. O valor é o LIMITE da ordem (dívida) — o quanto foi de fato retido só será conhecido no detalhamento.",
     "estado": "ordem"
    },
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   "chg": {}
   },
   {
    "numero": "0037389-48.2026.8.16.0014",
@@ -1342,7 +1340,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "09/06/2026",
    "ccb": "CCB nº 17.270.236 — Capital de Giro (Aval) de R$ 543.400,00, em 48 parcelas (última 15/10/2029). Inadimplentes desde 15/12/2025.",
-   "andamento": "01/10/2026 — Expedida citação de Alexandre José Martins (dívida atualizada R$ 705.604,56). Assim que a citação retornar positiva, abre prazo de 3 dias úteis para pagamento voluntário. Big Fome já citada em 27/07.",
+   "andamento": "28/10/2026 — Retornada citação POSITIVA de Alexandre José Martins. Abre prazo de 3 dias úteis para pagamento voluntário; não pago, o banco pode pedir bloqueio/penhora. Big Fome já havia sido citada em 27/07.",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
@@ -1355,10 +1353,14 @@ let DB = {
      "nome": "ALEXANDRE JOSE MARTINS",
      "doc": "021.184.999-57",
      "tipo": "PF",
-     "status": "nao",
-     "data": null
+     "status": "citado",
+     "data": "28/10/2026",
+     "novoCitado": true
     }
-   ]
+   ],
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "4018526-30.2026.8.26.0003",
@@ -1579,7 +1581,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "28/07/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "28/09/2026 — Proferida decisão em SEGREDO DE JUSTIÇA. Provável deferimento da penhora de valores e expedição de mandado da camioneta (Jeep Compass) em nome dos executados (conforme sinalizado via WhatsApp).",
+   "andamento": "27/10/2026 — EXPEDIDO o bloqueio de valores via SISBAJUD nas contas dos executados, até o limite da dívida (R$ 2.643.696,55). O processo aguarda ainda a expedição do mandado de penhora, avaliação, remoção e venda antecipada do veículo Jeep Compass.",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
@@ -1628,13 +1630,16 @@ let DB = {
     "desc": "Jeep Compass Sport TF 2.3 5P Flex, cinza, 2021/2022",
     "placa": "RHM3A23",
     "renavam": "01278754064",
-    "status": "Aguardando o jurídico enviar a expedição do carro. Por hora, nada atualizado."
+    "status": "Bloqueio de valores já disparado (SISBAJUD, 27/10). Agora o processo aguarda a expedição do mandado de penhora, avaliação, remoção e venda antecipada do veículo — passou a haver risco concreto de perda do carro."
    },
-   "penhora": {
-    "estado": "requerida",
-    "limite": 2643696.55,
-    "data": "28/09/2026",
-    "partes": "Big Fome, Alexandre, Serbase, 17 MAJ e Corn — decisão em segredo (provável deferimento)"
+   "bloqueio": {
+    "total": 2643696.55,
+    "semDetalhe": true,
+    "estado": "ordem",
+    "nota": "Ordem de bloqueio via SISBAJUD expedida em 27/10 até o limite da dívida (R$ 2.643.696,55). O quanto foi de fato retido só será conhecido no detalhamento."
+   },
+   "chg": {
+    "andamentoAtualizado": true
    }
   },
   {
@@ -1795,9 +1800,7 @@ let DB = {
      "data": null
     }
    ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   "chg": {}
   },
   {
    "numero": "4063244-24.2026.8.26.0000",
@@ -2191,34 +2194,34 @@ let DB = {
    "cdas": "90423231556-63",
    "tributo": "Div. Ativa - Contrib. Segurados",
    "adv": "-",
-   "andamento": "31/07/2026 — Juntada a carta de citação pelo correio, com comprovante.",
-   "dataMov": "31/07/2026",
-   "fase": "Citação",
+   "andamento": "28/10/2026 — Os autos foram remetidos à penhora (antes: carta de citação juntada em 31/07). Execução passou de citação para constrição.",
+   "dataMov": "28/10/2026",
+   "fase": "Penhora",
    "valor": 112435.71,
    "ajuizamento": "14/04/2026"
   }
  ],
  "mudancas": [
   {
-   "tipo": "valor",
-   "processo": "4080333-51.2026.8.26.0100",
-   "banco": "Safra",
-   "texto": "Credor apresentou valor atualizado do débito: R$ 2.053.914,14",
-   "detalhe": "16/10/2026 — A capa do processo ainda registra R$ 1.708.113,28. Citações de Gecionil e Raphael seguem negativas; Serbase citada em 22/06. Ordem de bloqueio de R$ 1.987.877,41 segue sem detalhamento."
+   "tipo": "bloqueio",
+   "processo": "0049142-02.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "Bloqueio via SISBAJUD disparado (até R$ 2.643.696,55) e Jeep Compass rumo a penhora/remoção",
+   "detalhe": "27/10/2026 — Ordem de bloqueio de valores expedida até o limite da dívida (valor retido a confirmar). O processo aguarda o mandado de penhora, avaliação, remoção e venda antecipada do Jeep Compass — risco concreto de perda do veículo."
   },
   {
    "tipo": "citacao",
-   "processo": "0051853-77.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "Citações negativas de Serbase, 17 MAJ e Amgeza",
-   "detalhe": "09/10/2026 — Processo ainda sem nenhuma parte citada. Iniciais expedidas em 25/08 para Gecionil, Omar e Raphael."
+   "processo": "0038855-77.2026.8.16.0014",
+   "banco": "Bradesco",
+   "texto": "Alexandre José citado (28/10) — abre prazo de pagamento",
+   "detalhe": "28/10/2026 — Citação positiva. Prazo de 3 dias úteis para pagamento voluntário; se não pago, o banco pode pedir bloqueio/penhora. Big Fome já citada em 27/07."
   },
   {
    "tipo": "andamento",
-   "processo": "5004586-81.2026.4.04.7001",
-   "banco": "Fiscal · Big Fome",
-   "texto": "Execução fiscal — exequente pediu penhora on-line (teimosinha/SISBAJUD)",
-   "detalhe": "Contribuição Previdenciária, R$ 171.110,99. O pedido de bloqueio recorrente via SISBAJUD pode levar à constrição nas próximas semanas."
+   "processo": "5007707-20.2026.4.04.7001",
+   "banco": "Fiscal · Corn Food",
+   "texto": "Execução fiscal remetida à penhora (saiu de citação → constrição)",
+   "detalhe": "28/10/2026 — Contribuição de segurados, R$ 112.435,71. Os autos foram remetidos à penhora — fase de constrição ativa."
   }
  ],
  "historico": [
@@ -2259,6 +2262,11 @@ let DB = {
   },
   {
    "data": "28/10",
+   "retido": 31939.21,
+   "citados": 16
+  },
+  {
+   "data": "04/11",
    "retido": 31939.21,
    "citados": 16
   }
@@ -2931,7 +2939,7 @@ function buildWhatsApp(){
   const tB=exec.reduce((s,p)=>s+(p.valor||0),0);
   const tF=DB.impostos.reduce((s,p)=>s+(p.valor||0),0);
   const totalProc=DB.bancario.length+DB.impostos.length;
-  const M=v=>fmtShort(v);
+  const M=v=>fmt(v);
 
   // partes já citadas (risco de penhora), separadas PJ/PF
   const citadas=aggregateParties().filter(p=>p.cit>0);
