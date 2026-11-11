@@ -830,9 +830,9 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "04/11/2026",
-  "fonte": "Planilha SEMANAL (04/11) + Resumo de Citações + Resumo de Bloqueios",
-  "semanaAnterior": "28/10/2026"
+  "atualizadoEm": "11/11/2026",
+  "fonte": "Planilha SEMANAL (11/11) + Resumo de Citações + Resumo de Bloqueios",
+  "semanaAnterior": "04/11/2026"
  },
  "bancario": [
   {
@@ -1354,13 +1354,10 @@ let DB = {
      "doc": "021.184.999-57",
      "tipo": "PF",
      "status": "citado",
-     "data": "28/10/2026",
-     "novoCitado": true
+     "data": "28/10/2026"
     }
    ],
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   "chg": {}
   },
   {
    "numero": "4018526-30.2026.8.26.0003",
@@ -1638,9 +1635,7 @@ let DB = {
     "estado": "ordem",
     "nota": "Ordem de bloqueio via SISBAJUD expedida em 27/10 até o limite da dívida (R$ 2.643.696,55). O quanto foi de fato retido só será conhecido no detalhamento."
    },
-   "chg": {
-    "andamentoAtualizado": true
-   }
+   "chg": {}
   },
   {
    "numero": "0051098-53.2026.8.16.0014",
@@ -2201,29 +2196,7 @@ let DB = {
    "ajuizamento": "14/04/2026"
   }
  ],
- "mudancas": [
-  {
-   "tipo": "bloqueio",
-   "processo": "0049142-02.2026.8.16.0014",
-   "banco": "Santander",
-   "texto": "Bloqueio via SISBAJUD disparado (até R$ 2.643.696,55) e Jeep Compass rumo a penhora/remoção",
-   "detalhe": "27/10/2026 — Ordem de bloqueio de valores expedida até o limite da dívida (valor retido a confirmar). O processo aguarda o mandado de penhora, avaliação, remoção e venda antecipada do Jeep Compass — risco concreto de perda do veículo."
-  },
-  {
-   "tipo": "citacao",
-   "processo": "0038855-77.2026.8.16.0014",
-   "banco": "Bradesco",
-   "texto": "Alexandre José citado (28/10) — abre prazo de pagamento",
-   "detalhe": "28/10/2026 — Citação positiva. Prazo de 3 dias úteis para pagamento voluntário; se não pago, o banco pode pedir bloqueio/penhora. Big Fome já citada em 27/07."
-  },
-  {
-   "tipo": "andamento",
-   "processo": "5007707-20.2026.4.04.7001",
-   "banco": "Fiscal · Corn Food",
-   "texto": "Execução fiscal remetida à penhora (saiu de citação → constrição)",
-   "detalhe": "28/10/2026 — Contribuição de segurados, R$ 112.435,71. Os autos foram remetidos à penhora — fase de constrição ativa."
-  }
- ],
+ "mudancas": [],
  "historico": [
   {
    "data": "ago",
@@ -2267,6 +2240,11 @@ let DB = {
   },
   {
    "data": "04/11",
+   "retido": 31939.21,
+   "citados": 16
+  },
+  {
+   "data": "11/11",
    "retido": 31939.21,
    "citados": 16
   }
@@ -2988,7 +2966,8 @@ function buildWhatsApp(){
   t+='🟠 *Já citados — risco de penhora* ('+citadas.length+')\n';
   if(pj.length){ t+='🏢 *Empresas ('+pj.length+')*\n'; pj.forEach(p=>t+=line(p)); }
   if(pf.length){ t+='👤 *Pessoas ('+pf.length+')*\n'; pf.forEach(p=>t+=line(p)); }
-  t+='_🆕 = citado nesta semana._\n\n';
+  if(citadas.some(pt=>pt.occ.some(o=>o.novo))) t+='_🆕 = citado nesta semana._\n';
+  t+='\n';
 
   // BLOQUEIOS: retido de fato vs ordem emitida vs penhora deferida/requerida
   const conf=DB.bancario.filter(p=>(p.bloqueio||{}).estado==='confirmado');
@@ -3002,7 +2981,8 @@ function buildWhatsApp(){
 
   if(conf.length){
     t+='✅ *RETIDO DE FATO* (confirmado nas contas) — *'+M(tConf)+'*\n';
-    conf.sort((a,b)=>b.bloqueio.total-a.bloqueio.total).forEach(p=>{ t+='• '+p.banco+': '+fmt(p.bloqueio.total)+'\n'; });
+    const byBankC={}; conf.forEach(p=>{ const bk=p.banco; if(!byBankC[bk])byBankC[bk]={tot:0,n:0}; byBankC[bk].tot+=(p.bloqueio.total||0); byBankC[bk].n++; });
+    Object.entries(byBankC).sort((a,b)=>b[1].tot-a[1].tot).forEach(([bk,o])=>{ t+='• '+bk+': '+fmt(o.tot)+(o.n>1?' _('+o.n+' processos)_':'')+'\n'; });
     t+='\n';
   }
   if(ordem.length){
@@ -3055,10 +3035,15 @@ function fallbackCopy(txt,cb){
 function renderNovidades(){
   const panel=document.getElementById('novidPanel');
   const list=(DB.mudancas||[]);
-  if(!list.length){panel.style.display='none';return;}
+  const semAnt=(DB.meta&&DB.meta.semanaAnterior?DB.meta.semanaAnterior:'a última atualização');
   panel.style.display='';
   document.getElementById('novidCount').textContent=list.length;
-  document.getElementById('novidSub').textContent='O que mudou desde '+(DB.meta&&DB.meta.semanaAnterior?DB.meta.semanaAnterior:'a última atualização');
+  if(!list.length){
+    document.getElementById('novidSub').textContent='Nenhuma movimentação desde '+semAnt;
+    document.getElementById('novidBody').innerHTML='<div class="nov-item nov-ok"><span class="nov-ic">✅</span><div class="nov-cbody"><div class="nov-txt">Semana sem movimentação nos processos.</div><div class="nov-det">Sem novos bloqueios, citações ou andamentos vindos da planilha semanal. Valores e status seguem iguais à semana anterior.</div></div></div>';
+    return;
+  }
+  document.getElementById('novidSub').textContent='O que mudou desde '+semAnt;
   const ic={citacao:'✅',ativo:'⚖️',valor:'💲',bloqueio:'💰',veiculo:'🚗',reversao:'🔄',novo_processo:'🆕',nova_fiscal:'🧾',andamento:'📝'};
   const icAtivo=m=> m.subtipo==='constricao'?'⚖️':'🏠';
   document.getElementById('novidBody').innerHTML = list.map(m=>{
