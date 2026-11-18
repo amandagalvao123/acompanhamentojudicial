@@ -830,9 +830,9 @@ footer{text-align:center;color:var(--muted-2);font-size:11px;margin-top:26px;lin
 /* ====== BASE DE DADOS ====== */
 let DB = {
  "meta": {
-  "atualizadoEm": "11/11/2026",
-  "fonte": "Planilha SEMANAL (11/11) + Resumo de Citações + Resumo de Bloqueios",
-  "semanaAnterior": "04/11/2026"
+  "atualizadoEm": "18/11/2026",
+  "fonte": "Planilha SEMANAL (18/11) + Resumo de Citações + Resumo de Bloqueios",
+  "semanaAnterior": "11/11/2026"
  },
  "bancario": [
   {
@@ -1116,7 +1116,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "19/05/2026",
    "ccb": "CCB nº 6888036 — Capital de Giro Aval de R$ 500.000,00, em 41 parcelas (última 27/11/2028). Inadimplentes desde a 5ª parcela.",
-   "andamento": "05/10/2026 — Citação POSITIVA de Omar Aparecido. Citação da Corn Food retornou NEGATIVA. Dívida atualizada: R$ 717.356,01.",
+   "andamento": "09/11/2026 — A citação da Corn Food retornou NEGATIVA novamente. 12/11/2026 — O banco solicitou a CONTINUAÇÃO dos bloqueios em face de Omar Aparecido Alves (citado em 05/10) — risco de bloqueio de valores para o Omar. Dívida: R$ 717.356,01.",
    "partes": [
     {
      "nome": "CORN FOOD COMÉRCIO DE ALIMENTOS LTDA",
@@ -1133,7 +1133,9 @@ let DB = {
      "data": "05/10/2026"
     }
    ],
-   "chg": {}
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "4080317-97.2026.8.26.0100",
@@ -1224,7 +1226,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "11/05/2026",
    "ccb": "CCB nº 005388936 — R$ 2.200.000,00. Inadimplentes desde 09/03/2026.",
-   "andamento": "16/10/2026 — O credor (Safra) apresentou o valor ATUALIZADO do débito: R$ 2.053.914,14 (a capa do processo ainda registra R$ 1.708.113,28). Citações de Gecionil e Raphael seguem negativas (08/10); Serbase citada em 22/06. A ordem de bloqueio de R$ 1.987.877,41 continua sem detalhamento.",
+   "andamento": "12/11/2026 — Foi apresentado o DETALHAMENTO do bloqueio de valores já realizado, mas o grupo segue SEM ACESSO porque o documento está em segredo de justiça. Ordem no valor de R$ 1.987.877,41 (Serbase). (16/10 — credor atualizou o débito para R$ 2.053.914,14; a capa ainda registra R$ 1.708.113,28. Serbase citada em 22/06; Gecionil e Raphael negativas.)",
    "partes": [
     {
      "nome": "SERBASE FOOD COM. ATACADISTA DE ALIMENTOS LTDA",
@@ -1251,10 +1253,12 @@ let DB = {
    "bloqueio": {
     "total": 1987877.41,
     "semDetalhe": true,
-    "nota": "Ordem de bloqueio em nome da Serbase. O valor é o LIMITE da ordem (dívida) — o quanto foi de fato retido só será conhecido no detalhamento.",
+    "nota": "Ordem de bloqueio em nome da Serbase (limite = dívida). O detalhamento do valor efetivamente retido já foi apresentado (12/11), mas está em segredo de justiça — o grupo ainda não teve acesso.",
     "estado": "ordem"
    },
-   "chg": {}
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "0037389-48.2026.8.16.0014",
@@ -1578,7 +1582,7 @@ let DB = {
    "ref": null,
    "ajuizamento": "28/07/2026",
    "ccb": "Execução de Título Extrajudicial (CCB) — Banco Santander.",
-   "andamento": "27/10/2026 — EXPEDIDO o bloqueio de valores via SISBAJUD nas contas dos executados, até o limite da dívida (R$ 2.643.696,55). O processo aguarda ainda a expedição do mandado de penhora, avaliação, remoção e venda antecipada do veículo Jeep Compass.",
+   "andamento": "27/10/2026 — Expedido o bloqueio de valores via SISBAJUD até o limite da dívida (R$ 2.643.696,55); o processo aguarda o mandado de penhora, avaliação, remoção e venda antecipada do veículo Jeep Compass. 10/11/2026 — Uma nova tentativa de citação de Alexandre José Martins retornou NEGATIVA (ele já consta citado desde 08/09; o bloqueio e o mandado do Jeep seguem em curso).",
    "partes": [
     {
      "nome": "BIG FOME LANCHES LTDA",
@@ -1635,7 +1639,9 @@ let DB = {
     "estado": "ordem",
     "nota": "Ordem de bloqueio via SISBAJUD expedida em 27/10 até o limite da dívida (R$ 2.643.696,55). O quanto foi de fato retido só será conhecido no detalhamento."
    },
-   "chg": {}
+   "chg": {
+    "andamentoAtualizado": true
+   }
   },
   {
    "numero": "0051098-53.2026.8.16.0014",
@@ -2196,7 +2202,29 @@ let DB = {
    "ajuizamento": "14/04/2026"
   }
  ],
- "mudancas": [],
+ "mudancas": [
+  {
+   "tipo": "andamento",
+   "processo": "0034070-72.2026.8.16.0014",
+   "banco": "Bradesco",
+   "texto": "Banco pediu a continuação dos bloqueios contra Omar Aparecido",
+   "detalhe": "12/11/2026 — Omar (citado em 05/10) pode sofrer bloqueio de valores. A citação da Corn Food voltou a retornar negativa (09/11). Dívida: R$ 717.356,01."
+  },
+  {
+   "tipo": "bloqueio",
+   "processo": "4080333-51.2026.8.26.0100",
+   "banco": "Safra",
+   "texto": "Detalhamento do bloqueio da Serbase foi apresentado — mas está em segredo de justiça",
+   "detalhe": "12/11/2026 — Já existe o detalhamento do quanto foi bloqueado (ordem de R$ 1.987.877,41), porém o documento está sob sigilo e o grupo ainda não teve acesso ao valor efetivamente retido."
+  },
+  {
+   "tipo": "citacao",
+   "processo": "0049142-02.2026.8.16.0014",
+   "banco": "Santander",
+   "texto": "Nova tentativa de citação do Alexandre retornou negativa",
+   "detalhe": "10/11/2026 — Alexandre já consta citado desde 08/09; esta era uma re-tentativa. O bloqueio SISBAJUD (R$ 2.643.696,55) e o mandado de remoção do Jeep Compass seguem em curso."
+  }
+ ],
  "historico": [
   {
    "data": "ago",
@@ -2245,6 +2273,11 @@ let DB = {
   },
   {
    "data": "11/11",
+   "retido": 31939.21,
+   "citados": 16
+  },
+  {
+   "data": "18/11",
    "retido": 31939.21,
    "citados": 16
   }
